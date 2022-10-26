@@ -1,0 +1,154 @@
+<ng-container >
+
+    <div class="md:flex no-wrap ml-60 mt-32 ">
+        <!-- Left Side -->
+        <div class="w-full md:w-3/12 md:mx-2">
+            <!-- Profile Card -->
+            <div class="bg-white p-16 ">
+                <div class="image overflow-hidden">
+                    <img class="object-cover rounded-full h-36 w-36 mx-auto m-1 p-1 " src={{photoLink}} alt="">
+                </div>
+                <div class="flex flex-row justify-center">
+                    <div class="item">
+                        <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1  " src="assets/img/ver.png" alt="" />
+                        <span class="caption text-xs">Verified</span>
+                    </div>
+                    <div class="item">
+                        <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1  " src="assets/img/fav.png" alt="" />
+                        <span class="caption text-xs">Favourites</span>
+                    </div>
+                    <div class="item">
+                        <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1 " src="assets/img/msg.png" alt="" />
+                        <span class="caption text-xs">Comments</span>
+                    </div>
+                </div>
+
+                <img class="my-4 mt-20" src="assets/img/Line.png" alt="" />
+                <div class=" rounded-lg bg-white px-8 h-32 py-3 shadow-md flex items-center gap-0 w-full border-2">
+                    <ul>
+                        <li class="flex items-center my-4">
+                            <i class="fas fa-check-circle text-green-800"></i>
+                            <span class="ml-4">Identity</span>
+                        </li>
+                        <li class="flex items-center my-4 ">
+                            <i class="fas fa-check-circle text-green-800"></i>
+                            <span class="ml-4">Email</span>
+                        </li>
+                        <li class="flex items-center my-4">
+                            <i class="fas fa-check-circle text-green-800"></i>
+                            <span class="ml-4">Phone Number</span>
+                        </li>
+                    </ul>
+
+
+                </div>
+               
+            </div>
+
+        </div>
+        <!-- Right Side -->
+        <div class="w-full md:w-9/12 mx-2">
+            <!-- Profile tab -->
+            <!-- About Section -->
+            <div class="bg-white p-16 shadow-sm rounded-sm">
+                    <div class="flex items-center my-4">
+
+                        <div class=" flex flex-col items-start">
+                            <span class="font-bold text-3xl leading-10 text-rose-500 tracking-widest">{{name}}</span>
+                            <span class=" text-2xl leading-10 text-black-500 tracking-widest ">{{role}} </span>
+
+                            <span class=" text-base	 tracking-widest">Member since 2022 </span>
+                            <span class=" text-base	 tracking-widest">Lives in {{user.country}}</span>
+
+                        </div>
+                    </div>
+
+                    <div
+                        class=" flex flex-col rounded-lg bg-white px-2 h-[200px]  shadow-md  gap-0 w-[896px] border-2 my-10 space-y-4">
+
+                        <span class="font-bold text-3xl  tracking-widest">Biography</span>
+
+
+
+                        <span class="tracking-wide  text-lg	 text-black-500 ">
+                            Hello Everyone, 
+                            My Name is {{name}} and I live in {{user.country}} .
+                            I am actually hosting some interresting experiences that you can check them below.
+                            If you are interrested in one of them, you can easily reserve your place.<br>
+                            Best regards. 
+                        </span>
+
+
+
+                    </div>
+                    <div class="mt-16 mb-6">
+
+
+                        <span class="font-bold  tracking-widest text-3xl leading-10 mt-2"> Experiences</span>
+
+                    </div>
+                    <div class="my-4" *ngFor="let item of dataArray ;index as i">
+                        <div
+                            class="flex flex-col  gap-0 justify-between h-72  w-[896px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <div class="flex flex-col p-8 leading-normal w-full space-y-4 ">
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.experienceTitle}}</span>
+                                    <div class="z-10 space-x-8">
+                                        <button class="primary-button2 " id="bouton"> {{item.theme}} </button>
+
+                                    </div>
+                                    <div class="z-10 ">
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">Description :
+                                    </p>
+                                    <p
+                                        class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide	">
+                                        {{item.experienceDescription}}</p>
+                                </div>
+
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span
+                                            class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.price}}
+                                            {{item.priceUnit}} / Person</span>
+                                        <br><br>
+                                        <span
+                                            class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.location}}</span>
+
+                                    </div>
+                                    <div class="">
+                                        <span
+                                            class="mb-2 ml-16 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.startDate|
+                                            date: 'MMM d, y' }}
+                                            - {{item.endDate | date: 'MMM d, y' }} </span>
+                                        <br><br>
+                                        <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                        (click)="goToDetails(item.experienceId)">Details</a>
+
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="max-w-xs">
+                                <img class="object-cover w-[401px] h-72 rounded-lg  " src={{item.img}}
+                                    alt="">
+
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                </div>
+        </div>
+    </div>
+
+</ng-container>

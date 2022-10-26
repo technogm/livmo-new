@@ -1,0 +1,1046 @@
+<div class="flex flex-col justify-center text-center">
+    <div class="bg-AddExperience z-0"></div>
+    <div class="flex flex-col mt-20 w-full h-full z-10">
+        <span class="font-bold text-4xl leading-10 text-white mt-20 mb-4">CREATE AN EXPERIENCE </span>
+        <app-stepperexp [current]="step" [length]="isselected == 'organisation' ? 5 : 5" [labels]="getlabels()">
+        </app-stepperexp>
+        <ng-container>
+            <form [formGroup]="Form1Experience" *ngIf="step == 1">
+                <div class="flex justify-center w-full mt-10">
+                    <div class="grid grid-cols-3 gap-5 justify-center max-w-2xl">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white "> Experience Title :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="experienceTitle" placeholder="Experience Title" required>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white "> Theme :</span>
+                            <div class=" rounded-3xl bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="ThemeType"
+                                    [(ngModel)]="SelectedTheme" [showClear]="false"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white ">Sub Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="SubTheme" class="outline-none h-8 w-full text-left"
+                                    [options]="SubType" [(ngModel)]="SelectedSub" optionLabel="name"
+                                    formControlName="subTheme" [showClear]="false"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white ">Location :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4">
+                                <input type="text" class="outline-none w-full h-8 " placeholder="Experience Location "
+                                    formControlName="location" required>
+
+                            </div>
+                        </div>
+                        <div class="flex items-start w-full gap-4">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-base leading-5 text-white ">Price (en DT)</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4">
+                                    <input type="text" class="outline-none w-full h-8 " pInputText pKeyFilter="num"
+                                        formControlName="price">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-base leading-5 text-white ">Unit :</span>
+                                <select
+                                    class=" rounded-lg bg-white px-4 py-1 border-white shadow-md mt-1 items-center gap-4 h-10 w-fit"
+                                    formControlName="priceUnit">
+
+                                    <option>Person</option>
+                                    <option>Day</option>
+                                    <option>Night</option>
+                                    <option>Session</option>
+                                    <option>Hour</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white ">Spots :</span>
+                            <div class=" rounded-lg bg-white shadow-md flex items-center mt-1 gap-4 w-full ">
+                                <div class="field md:col-3 ">
+                                    <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons"
+                                        suffix=" Spots Available" formControlName="spots" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 text-white ">Maps Link :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" class="outline-none w-full h-8" placeholder="Map Link" required
+                                    formControlName="mapLocation">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 text-white">Experience Photos :</span>
+                            <div class="rounded-xl px-4 py-1 shadow-md mt-1 items-center gap-4">
+                                <p-dialog [(visible)]="displayBasic" [modal]="true" [style]="{ width: '45vw' }"
+                                    [baseZIndex]="10000" [draggable]="false" [resizable]="false" class="rounded-3xl">
+                                    <app-add-photos-exp [(expPictures)]="expPictures"></app-add-photos-exp>
+                                </p-dialog>
+                                <button
+                                    class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 w-24 h-9 border-1"
+                                    (click)="showBasicDialog2()">Photos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+        <ng-container>
+            <div class="flex flex-col md:flex-col justify-center w-full ">
+                <form [formGroup]="Form2Experience" *ngIf="step == 2">
+                    <div class="flex-1 h-full max-w-4xl mt-5 mx-auto ">
+                        <div class="flex flex-col  md:flex-row items-start gap-16">
+                            <div class="flex flex-col justify-center w-full mt-5">
+                                <div class="flex flex-col items-start w-full">
+                                    <span class=" leading-2 text-white font-bold text-sm "> What are the plans for the
+                                        participants? </span>
+                                    <span class=" leading-5 text-white  text-xs "> • Offer a precise plan from start to
+                                        finish.</span>
+                                    <span class=" leading-5 text-white  text-xs "> • Describe how your experience is
+                                        unique to your participants. </span>
+                                </div>
+
+                                <div class="flex flex-col items-start w-full mt-4">
+                                    <textarea
+                                        class="form-control p-2 block  w-[450px] h-24 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md
+                                          transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        id="exampleFormControlTextarea1" rows="3"
+                                        formControlName="experienceDescription"
+                                        placeholder="Explain to the participents the course of your experience"></textarea>
+                                </div>
+                                <div class="flex flex-row gap-4 mt-4">
+                                    <div class="flex flex-col items-start ">
+                                        <div class="flex flex-col items-start ">
+                                            <span class="font-semibold text-base leading-5 text-white "> Type of Date
+                                                :</span>
+                                            <div class=" rounded-lg bg-white shadow-md items-center gap-4 w-40 mt-2">
+                                                <p-dropdown placeholder="Type Date" class="outline-none w-full h-8"
+                                                    optionLabel="name" [options]="dateType" formControlName="datType"
+                                                    [(ngModel)]="SelectedDate"></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-start ">
+                                        <div class="flex flex-col items-start ">
+                                            <span class="font-semibold text-base leading-5 text-white "> Season :</span>
+                                            <div class=" rounded-lg bg-white shadow-md mt-2 items-center gap-4 w-48">
+                                                <p-dropdown placeholder=" Season" class="outline-none w-full h-8"
+                                                    optionLabel="name" [showClear]="false" formControlName="season"
+                                                    [options]="SeasonType" [(ngModel)]="SelectedSeason"></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex flex-col justify-center w-full">
+                                <ng-container *ngIf="SelectedDate && SelectedDate.name =='Interval Date'">
+                                    <div class="flex items-start gap-3 w-full ">
+                                        <div class="flex flex-col col-span-2 items-start w-96">
+                                            <span class="font-semibold text-base leading-5 text-white ">Days Off
+                                                :</span>
+                                            <div
+                                                class=" rounded-lg bg-white px-4 py-1 shadow-md  gap-4 w-full items-start ">
+
+                                                <p-multiSelect [options]="ListDays" [(ngModel)]="selectDay"
+                                                    class="flex w-fit border-0 rounded-xl " formControlName="daysOff"
+                                                    defaultLabel="Select your days" optionLabel="name" display="chip"
+                                                    autocomplete="false">
+                                                </p-multiSelect>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form [formGroup]="TimeIntervall">
+
+                                        <div class="flex flex-row items-start gap-5 mt-4 ">
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">Start Time
+                                                    :</span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md items-center mt-1 gap-4 w-[116px] h-11">
+                                                    <p-calendar [(ngModel)]="input1" [timeOnly]="true"
+                                                        class="outline-none w-full h-4 " placeholder="00:00"
+                                                         formControlName="startTimeExpDate">
+                                                    </p-calendar>
+
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">End Time
+                                                    :</span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md items-center mt-1 gap-4 w-[116px] h-11">
+                                                    <p-calendar [(ngModel)]="input2" [timeOnly]="true"
+                                                        class="outline-none w-full h-4" placeholder="00:00"
+                                                         formControlName="endTimeExpDate">
+                                                    </p-calendar>
+
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start mt-3 ">
+                                                <div class="flex justify-start mt-3">
+                                                    <button
+                                                        class=" bg-white rounded-lg font-bold text-red-500 items-start border-red-500 w-[116px]  h-11 border-1"
+                                                        src="assets/img/X.png " (click)="addDat()">
+                                                        Add Time
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <div *ngFor="let dates of DateArray,index as i">
+                                        <form>
+                                            <div class="flex flex-row items-start gap-5 mt-3 ">
+                                                <div class="flex flex-col items-start ">
+                                                    <span class="font-semibold text-base leading-5 text-white ">Start
+                                                        Time
+                                                        :</span>
+                                                    <div
+                                                        class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-[116px]  h-8 border-1">
+                                                        <span class="outline-none w-full h-4"> {{dates.start
+                                                            |date:'shortTime' }} </span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-col items-start  ">
+                                                    <span class="font-semibold text-base leading-5 text-white ">End Time
+                                                        :</span>
+                                                    <div
+                                                        class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 mt-1 w-[116px]  h-8 border-1">
+                                                        <span class="outline-none w-full h-4"> {{dates.end
+                                                            |date:'shortTime'
+                                                            }} </span>
+
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-col items-start mt-1 ">
+                                                    <div class="flex justify-start mt-4">
+                                                        <button
+                                                            class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 w-10  h-9 border-1"
+                                                            src="assets/img/X.png " (click)="deleteTime(i)">
+                                                            X
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </ng-container>
+
+                                <ng-container *ngIf="SelectedDate && SelectedDate.name =='Open Date'">
+                                    <form [formGroup]="TimeOpen">
+                                        <div class="flex flex-row items-start gap-3  mt-52">
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">Duration
+                                                    (Days)
+                                                </span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+
+                                                    <p-inputNumber mode="decimal" [showButtons]="true"
+                                                        inputId="minmax-buttons" class="outline-none w-full h-8"
+                                                        formControlName="durationDays" suffix=" Days" [min]="1"
+                                                        [max]="365">
+                                                    </p-inputNumber>
+
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">Duration
+                                                    (Hours)
+                                                </span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                                    <p-inputNumber mode="decimal" [showButtons]="true"
+                                                        inputId="minmax-buttons" class="outline-none w-full h-8"
+                                                        formControlName="durationHours" suffix=" Hours" [min]="1"
+                                                        [max]="1000">
+                                                    </p-inputNumber>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </ng-container>
+                                <ng-container *ngIf=" SelectedDate &&  SelectedDate.name =='Specific Date'">
+                                    <form [formGroup]="TimeSpecific">
+                                        <div class="flex flex-row items-start gap-4  mt-20">
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">Start
+                                                    Date</span>
+                                                <div
+                                                    class=" rounded-lg bg-white py-1 shadow-md items-center mt-1 gap-4 h-11 w-32">
+                                                    <p-calendar [(ngModel)]="startD" class="outline-none w-full h-9 "
+                                                        placeholder="dd/mm/yyyy" formControlName="startDate">
+                                                    </p-calendar>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">End
+                                                    Date</span>
+                                                <div
+                                                    class=" rounded-lg bg-white py-1 shadow-md items-center mt-1 gap-4 h-11 w-32">
+                                                    <p-calendar [(ngModel)]="endD" class="outline-none w-full h-9 "
+                                                        placeholder="dd/mm/yyyy" formControlName="endDate">
+                                                    </p-calendar>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-start gap-4 mt-7 ">
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">Start
+                                                    Time</span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md items-center mt-1 gap-4 h-11 w-32">
+                                                    <p-calendar [(ngModel)]="startT" [timeOnly]="true"
+                                                        class="outline-none w-fit h-9 " 
+                                                        placeholder="00:00" formControlName="startTime"></p-calendar>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start ">
+                                                <span class="font-semibold text-base leading-5 text-white ">End
+                                                    Time</span>
+                                                <div
+                                                    class=" rounded-lg bg-white px-4 py-1 shadow-md items-center mt-1 gap-4 h-11 w-32">
+                                                    <p-calendar [(ngModel)]="endT" [timeOnly]="true"
+                                                        class="outline-none w-fit h-9 " 
+                                                        placeholder="00:00" formControlName="endTime"></p-calendar>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </ng-container>
+        <ng-container>
+            <form *ngIf="step == 3">
+                <div class="flex mt-14 mb-12 justify-center ">
+                    <div class="flex flex-col gap-6 justify-center  ">
+                        <div class="items-start relative">
+                            <span class="font-semibold text-base leading-5 items-start text-white"> Fill in this Form
+                            </span>
+                            <p-dialog [(visible)]="displayActivity" header="Activity" [modal]="true"
+                                [baseZIndex]="10000" [draggable]="false" [resizable]="false"
+                                class="SpecificModal flex rounded-3xl ">
+                                <form [formGroup]="AddActivity">
+                                    <div class=" flex items-center justify-start ml-4 ">
+                                        <div class=" w-full">
+                                            <div class="mt-4">
+                                                <span class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                    Activity title :</span>
+                                                <div
+                                                    class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[590px] h-7">
+                                                    <input type="text"
+                                                        class="form-control outline-none w-full h-5 bg-inherit"
+                                                        formControlName="title">
+                                                </div>
+                                                <span
+                                                    class="font-semibold text-base leading-5 flex items-start mb-2 mt-6 ">
+                                                    Activity’s Description :</span>
+                                                <textarea
+                                                    class="form-control p-2 block w-[590px] h-48 text-base font-normal  bg-clip-padding 
+                                                px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                    formControlName="description"></textarea>
+                                                <div class="flex flex-row gap-[90px] w-[610px] mt-5">
+                                                    <div>
+                                                        <span class=" font-semibold text-base leading-5 text-black ">
+                                                            Start (Optional)
+                                                            :</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class=" font-semibold text-base leading-5 text-black ">
+                                                            End (Optional)
+                                                            :</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-row gap-4 w-[400px]">
+                                                    <p-calendar placeholder="dd/mm/yyyy" [(ngModel)]="startDA"
+                                                        class="GreyCal flex outline-none rounded-lg  shadow-md items-start gap-7 h-6 w-[280px] text-xs"
+                                                        formControlName="startDateActivity"></p-calendar>
+                                                    <p-calendar [timeOnly]="true"
+                                                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-44"
+                                                        formControlName="startTimeActivity" placeholder="00:00"
+                                                        [(ngModel)]="startTA" ></p-calendar>
+                                                    <p-calendar placeholder="dd/mm/yyyy"
+                                                        class="GreyCal flex outline-none rounded-lg  shadow-md items-start gap-7 h-6 w-[280px] text-xs"
+                                                        [(ngModel)]="endDA" formControlName="endDateActivity">
+                                                    </p-calendar>
+                                                    <p-calendar [timeOnly]="true"
+                                                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-44 "
+                                                        formControlName="endTimeActivity" placeholder="00:00"
+                                                        [(ngModel)]="endTA" ></p-calendar>
+                                                </div>
+
+                                                <input type="file" multiple
+                                                    class="opacity-0 pointer-events-none absolute flex flex-col  mt-48
+                                                   rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center"
+                                                    id="UploadImages" (change)="uploadedFile($event,'Image')" />
+                                                <div class="flex flex-row gap-5 mt-6">
+                                                    <span
+                                                        class=" font-semibold text-base leading-5 text-black  border-white">
+                                                        Add Photos :</span>
+                                                    <button type="button" (click)="clickFakeUpload('UploadImages')"
+                                                        class="AddButton border-0  w-36 h-7">Add</button>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-4 justify-center ">
+                                                    <div *ngFor="let pic of ActImages;index as i" class="relative  ">
+                                                        <img [src]="pic ? pic.data : 'assets/img/addPhotos.png'"
+                                                            class="mt-5 w-48 h-36 border-2 rounded-3xl" />
+                                                        <button class="absolute p-2 right-0 top-0 mt-4 text-red-500 "
+                                                            (click)="deleteImg(i)">
+                                                            <img src="assets/img/x.png " class="pi pi-times w-4">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-row gap-8 items-center ">
+                                                    <button
+                                                        class=" previous-button block w-full px-4 py-2 mt-4 leading-5 text-center"
+                                                        (click)="HideActiv()">
+                                                        Delete
+                                                    </button>
+                                                    <button
+                                                        class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+                                                        [disabled]="!NextStepValidationActivity()"
+                                                        [class]="!NextStepValidationActivity() ? 'primary-button-disabled':''"
+                                                        (click)="addActivity()">
+                                                        Confirm
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </p-dialog>
+                        </div>
+                        <div class="relative">
+                            <button
+                                class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 w-44 h-9 border-1 "
+                                (click)="showActivity()">Add an activity</button>
+                        </div>
+                        <div class="flex flex-col gap-4 ">
+                            <app-add-activity *ngFor="let activity of activities" [activity]="activity"
+                                (delete)="deleteActivity(activity)"></app-add-activity>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+        <ng-container>
+            <div class="flex flex-col md:flex-col justify-center w-full">
+                <form  [formGroup]="Validation" *ngIf="step == 4">
+                    <div class="flex-1 h-full max-w-4xl mt-5 mx-auto ">
+                        <div class="flex flex-col gap-5 md:flex-row">
+                            <div class="flex flex-col justify-center w-full mt-5 gap-10">
+                                <div class="flex flex-row  items-start w-full gap-x-14">
+                                    <span class=" leading-2 text-white font-bold text-sm "> Does your experience include
+                                        food ? </span>
+                                    <label for="red-toggle1"
+                                        class="ml-7 inline-flex relative items-center mr-5 cursor-pointer gap-4">
+                                        <input type="checkbox" value="ch1" id="red-toggle1" class="sr-only peer" formControlName="foodExist"
+                                            (change)="toggleButton()">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4  peer-focus:ring-red-300 
+                                        dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                        after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                        after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="flex flex-row gap-6 justify-start">
+                                    <div class="relative">
+                                        <button class="verify-buttonexp border-2 border-rose-500" *ngIf="switchCase"
+                                            (click)="showFood()">Add
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-row gap-4 ">
+                                        <app-add-food *ngFor="let food of Foods " [food]="food" class="flex w-full"
+                                            (delete)="deleteFood(food)">
+                                        </app-add-food>
+                                    </div>
+                                    <div>
+                                        <p-dialog [(visible)]="displayFood" header="Food" [modal]="true"
+                                            [baseZIndex]="10000" [draggable]="false" [resizable]="false"
+                                            class=" SpecificModalFood flex rounded-3xl ">
+                                            <form [formGroup]="AddFood">
+                                                <div class=" flex items-center justify-start ml-4 ">
+                                                    <div class=" w-full">
+                                                        <div class="mt-2">
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                Dish Name :</span>
+                                                            <div
+                                                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[420px] h-7">
+                                                                <input type="text"
+                                                                    class="form-control outline-none w-full h-5 bg-inherit"
+                                                                    formControlName="nameDish">
+                                                            </div>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start mb-2 mt-4 ">
+                                                                Activity’s Description :</span>
+                                                            <textarea
+                                                                class="form-control p-2 block w-[420px] h-36 text-base font-normal  bg-clip-padding 
+                                                            px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                                formControlName="description"></textarea>
+                                                            <input type="file" multiple
+                                                                class="opacity-0 pointer-events-none absolute flex flex-col  mt-48
+                                                            rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center"
+                                                                id="UploadImages"
+                                                                (change)="uploadedFile($event,'ImageFood')" />
+                                                            <div class="flex flex-row gap-5 mt-5">
+                                                                <button type="button"
+                                                                    (click)="clickFakeUpload('UploadImages')"
+                                                                    class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 border-2 w-24 h-9 border-1">Photos</button>
+                                                            </div>
+                                                            <div class="grid grid-cols-2 gap-8 justify-center ">
+                                                                <div *ngFor="let pic of FoodImages;index as i"
+                                                                    class="relative  ">
+                                                                    <img [src]="pic ? pic.data : 'assets/img/addPhotos.png'"
+                                                                        class="mt-5 w-52 h-36 border-2 rounded-3xl" />
+                                                                    <button
+                                                                        class="absolute p-2 right-0 top-0 mt-4 text-red-500 "
+                                                                        (click)="deleteFoodImg(i)">
+                                                                        <img src="assets/img/x.png "
+                                                                            class="pi pi-times w-4">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-8 items-center ">
+                                                                <button
+                                                                    class=" previous-button block w-full px-4 py-2 mt-4 leading-5 text-center"
+                                                                    (click)="HideFood()">
+                                                                    Delete
+                                                                </button>
+                                                                <button
+                                                                    class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+                                                                    (click)="addFood()">
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </p-dialog>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row  items-start w-full gap-x-14">
+                                    <span class=" leading-2 text-white font-bold text-sm "> Does your experience include
+                                        transport ? </span>
+                                    <label for="red-toggle"
+                                        class="inline-flex relative items-center mr-5 cursor-pointer gap-4">
+                                        <input type="checkbox" value="ch2" id="red-toggle" class="sr-only peer" formControlName="transportExist"
+                                            (change)="toggleButton2()">
+                                        <div
+                                            class="h-6 w-11 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 relative
+                                         dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white
+                                          after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                          after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="flex flex-row gap-6 justify-start">
+                                    <div class="relative">
+                                        <button class="verify-buttonexp border-2 border-rose-500"
+                                            (click)="showTransport()" *ngIf="switchCase2">Add
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-row gap-4 ">
+                                        <app-add-transportexp *ngFor="let trans of Transports " [trans]="trans"
+                                            class="flex w-full" (delete)="deleteTransport(trans)">
+                                        </app-add-transportexp>
+                                    </div>
+                                    <div>
+                                        <p-dialog [(visible)]="displayTransport" header="Transport" [modal]="true"
+                                            [baseZIndex]="10000" [draggable]="false" [resizable]="false"
+                                            class=" SpecificModalFood flex rounded-3xl ">
+                                            <form [formGroup]="AddTransport">
+                                                <div class=" flex items-center justify-start ml-4 ">
+                                                    <div class=" w-full">
+                                                        <div class="mt-2">
+                                                            <div class="flex flex-row gap-4">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Vehicule Name :</span>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[200px] h-7">
+                                                                        <input type="text"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit"
+                                                                            formControlName="vehiculeName">
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Number of Seats :</span>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[200px] h-7">
+                                                                        <input type="text"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit"
+                                                                            formControlName="seats">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-40 mt-2">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        The Go :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        The Arrival :</span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-[75px] mt-1">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        From :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        To :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        From :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        To :</span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-5">
+                                                                <div>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                                                        <input type="text"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit"
+                                                                            formControlName="toGoFrom">
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                                                        <input type="text" formControlName="toGoTo"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit">
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                                                        <input type="text"
+                                                                            formControlName="toReturnFrom"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit">
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                                                        <input type="text" formControlName="toReturnTo"
+                                                                            class="form-control outline-none w-full h-5 bg-inherit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-9 mt-2">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Departure :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Arrival :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Departure :</span>
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Arrival :</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-4 w-[400px] mt-2">
+                                                                <p-calendar [timeOnly]="true"
+                                                                    formControlName="toGoFromDeparture"
+                                                                    class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                                                                    placeholder="00:00" [(ngModel)]="startDR"
+                                                                    ></p-calendar>
+                                                                <p-calendar [timeOnly]="true"
+                                                                    class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                                                                    placeholder="00:00" [(ngModel)]="endDR"
+                                                                    formControlName="toGoToArrival" >
+                                                                </p-calendar>
+                                                                <p-calendar [timeOnly]="true"
+                                                                    class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                                                                    placeholder="00:00" [(ngModel)]="startTR"
+                                                                    formControlName="toReturnFromDeparture"
+                                                                    ></p-calendar>
+                                                                <p-calendar [timeOnly]="true"
+                                                                    class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                                                                    placeholder="00:00" [(ngModel)]="endTR"
+                                                                    formControlName="toReturnToArrival"
+                                                                    ></p-calendar>
+                                                            </div>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start mb-2 mt-6 ">
+                                                                Vehicule Description :</span>
+                                                            <textarea
+                                                                class="form-control p-2 block w-[420px] h-36 text-base font-normal  bg-clip-padding 
+                                                            px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                                formControlName="description"></textarea>
+                                                            <input type="file" multiple
+                                                                class="opacity-0 pointer-events-none absolute flex flex-col  mt-48
+                                                            rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center"
+                                                                id="UploadImages"
+                                                                (change)="uploadedFile($event,'ImageTransport')" />
+                                                            <div class="flex flex-row gap-5 mt-5">
+                                                                <button type="button"
+                                                                    (click)="clickFakeUpload('UploadImages')"
+                                                                    class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 border-2 w-24 h-9 border-1">Photos</button>
+                                                            </div>
+                                                            <div class="grid grid-cols-2 gap-8 justify-center ">
+                                                                <div *ngFor="let pic of TransportImages;index as i"
+                                                                    class="relative  ">
+                                                                    <img [src]="pic ? pic.data : 'assets/img/addPhotos.png'"
+                                                                        class="mt-5 w-52 h-36 border-2 rounded-3xl" />
+                                                                    <button
+                                                                        class="absolute p-2 right-0 top-0 mt-4 text-red-500 "
+                                                                        (click)="deleteTransportImg(i)">
+                                                                        <img src="assets/img/x.png "
+                                                                            class="pi pi-times w-4">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-8 items-center ">
+                                                                <button
+                                                                    class=" previous-button block w-full px-4 py-2 mt-4 leading-5 text-center"
+                                                                    (click)="HideTransport()">
+                                                                    Delete
+                                                                </button>
+                                                                <button
+                                                                    class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+                                                                    (click)="addTransport()">
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </p-dialog>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row items-start w-full gap-x-10">
+                                    <span class=" leading-2 text-white font-bold text-sm "> Does your experience include
+                                        Lodging ? </span>
+                                    <label for="red-toggle3"
+                                        class="ml-7 inline-flex relative items-center mr-5 cursor-pointer gap-4">
+                                        <input type="checkbox" value="ch3" id="red-toggle3" class="sr-only peer" formControlName="lodgingExist"
+                                            (change)="toggleButton3()">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 
+                                        dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] 
+                                        after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full 
+                                        after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500 gap-6">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="flex flex-row gap-6 justify-start">
+                                    <div class="relative">
+                                        <button class="verify-buttonexp border-2 border-rose-500" *ngIf="switchCase3"
+                                            (click)="showLodging()">Add
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-row gap-4 ">
+                                        <app-add-lodgingexp *ngFor="let lodg of Lodgings " [lodg]="lodg"
+                                            class="flex w-full" (delete)="deleteLodging(lodg)">
+                                        </app-add-lodgingexp>
+                                    </div>
+                                    <div>
+                                        <p-dialog [(visible)]="displayLodging" header="Lodging" [modal]="true"
+                                            [baseZIndex]="10000" [draggable]="false" [resizable]="false"
+                                            class=" SpecificModalFood flex rounded-3xl mt-1">
+                                            <form [formGroup]="AddLodging">
+                                                <div class=" flex items-center justify-start ml-4 ">
+                                                    <div class=" w-full">
+                                                        <div class="mt-2">
+                                                            <div class="flex flex-row gap-6">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Lodging Category :</span>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-48 h-7">
+                                                                        <select
+                                                                            class=" form-control outline-none w-48 h-5 bg-inherit"
+                                                                            formControlName="category">
+
+                                                                            <option>Full Lodging</option>
+                                                                            <option>private Room</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                                                        Lodging Type :</span>
+                                                                    <div
+                                                                        class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-48 h-7">
+                                                                        <select
+                                                                            class=" form-control outline-none w-48 h-5 bg-inherit"
+                                                                            formControlName="type">
+
+                                                                            <option>Hotel</option>
+                                                                            <option>Guest House</option>
+                                                                            <option>Villa</option>
+                                                                            <option>Appartment</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start  mt-2">
+                                                                Address :</span>
+                                                            <div
+                                                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[400px] h-7">
+                                                                <input type="text"
+                                                                    class="form-control outline-none w-full h-5 bg-inherit"
+                                                                    formControlName="adress">
+                                                            </div>
+                                                            <div class="flex flex-col gap-1 mt-1">
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start">
+                                                                        Reservation start date :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <p-calendar formControlName="startDateLodgignExp"
+                                                                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 mb-4 "
+                                                                        placeholder="dd:mm:yyyy" [(ngModel)]="startLodg"
+                                                                        ></p-calendar>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-col gap-1 mt-1">
+
+                                                                <div>
+                                                                    <span
+                                                                        class="font-semibold text-base leading-5 flex items-start ">
+                                                                        Reservation end date :</span>
+
+                                                                </div>
+                                                                <div>
+                                                                    <p-calendar formControlName="endDateLodgingExp"
+                                                                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                                                                        placeholder="dd:mm:yyyy" [(ngModel)]="endLodg"
+                                                                        ></p-calendar>
+                                                                </div>
+                                                            </div>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start  mt-5  ">
+                                                                Lodging Description :</span>
+                                                            <textarea
+                                                                class="form-control p-2 block w-[400px] h-24 text-base font-normal  bg-clip-padding  mt-1
+                                                            px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                                formControlName="description"></textarea>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start  mt-4 ">
+                                                                Lodging Instructions :</span>
+                                                            <textarea
+                                                                class="form-control p-2 block w-[400px] h-24 text-base font-normal  bg-clip-padding mt-1
+                                                            px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                                formControlName="instructions"></textarea>
+                                                            <span
+                                                                class="font-semibold text-base leading-5 flex items-start  mt-4 ">
+                                                                Criteria :</span>
+                                                            <textarea
+                                                                class="form-control p-2 block w-[400px] h-24 text-base font-normal  bg-clip-padding  mt-1
+                                                            px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                                                                formControlName="criteria"></textarea>
+                                                            <input type="file" multiple
+                                                                class="opacity-0 pointer-events-none absolute flex flex-col  mt-48
+                                                            rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-28 justify-center"
+                                                                id="UploadImages"
+                                                                (change)="uploadedFile($event,'ImageLodging')" />
+                                                            <div class="flex flex-row gap-5 mt-3">
+                                                                <button type="button"
+                                                                    (click)="clickFakeUpload('UploadImages')"
+                                                                    class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 border-2 w-24 h-9 border-1">Photos</button>
+                                                            </div>
+                                                            <div class="grid grid-cols-2 gap-8 justify-center ">
+                                                                <div *ngFor="let pic of LodgingImages;index as i"
+                                                                    class="relative  ">
+                                                                    <img [src]="pic ? pic.data : 'assets/img/addPhotos.png'"
+                                                                        class="mt-5 w-52 h-36 border-2 rounded-3xl" />
+                                                                    <button
+                                                                        class="absolute p-2 right-0 top-0 mt-4 text-red-500 "
+                                                                        (click)="deleteLodgingImg(i)">
+                                                                        <img src="assets/img/x.png "
+                                                                            class="pi pi-times w-4">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex flex-row gap-8 items-center ">
+                                                                <button
+                                                                    class=" previous-button block w-full px-4 py-2 mt-4 leading-5 text-center"
+                                                                    (click)="HideLodging()">
+                                                                    Delete
+                                                                </button>
+                                                                <button
+                                                                    class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+                                                                    (click)="addLodging()">
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </p-dialog>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </ng-container>
+        <ng-container>
+            <div class="flex flex-col md:flex-col justify-center w-full">
+                <form [formGroup]="Form5Experience" *ngIf="step == 5">
+                    <div class="flex-1 h-full max-w-5xl mt-5 mx-auto ">
+                        <div class="flex flex-col gap-5 md:flex-row">
+                            <div class="flex flex-col justify-center w-full mt-5 gap-10">
+                                <div class="flex flex-row  items-start w-full gap-14">
+                                    <div class="flex flex-col items-start w-full">
+                                        <span class=" leading-2 text-white font-bold text-sm "> Who can participate in
+                                            your experience ? </span>
+                                        <span class=" leading-5 text-white  text-xs "> Remember that the person booking
+                                            your experience can also book for others.</span>
+                                        <span class=" leading-5 text-white  text-xs ">So if there are any age
+                                            restrictions, certifications, or skill requirements, add them here. </span>
+                                        <div class="flex flex-col items-start w-full gap-2 mt-3">
+                                            <span class=" leading-2 text-white font-bold text-base "> Minimum Age :
+                                            </span>
+                                            <div class="p-field p-col-12 p-md-3 w-40 h-10 ">
+                                                <p-inputNumber [showButtons]="true" inputId="expiry" prefix=""
+                                                    formControlName="minAge" suffix=" Years Old"
+                                                    formControlName="minAge">
+                                                </p-inputNumber>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row  items-start w-full gap-x-24 mt-4">
+                                            <span class=" leading-2 text-white font-bold text-sm "> Are Pets Allowed ?
+                                            </span>
+                                            <label for="red-toggle1"
+                                                class="inline-flex relative items-center mr-5 cursor-pointer gap-4">
+                                                <input type="checkbox" value="ch1" id="red-toggle1" class="sr-only peer"
+                                                    formControlName="petsAllowed">
+                                                <div
+                                                    class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4  peer-focus:ring-red-300 
+                                                    dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                                    after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                                    after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="flex flex-col items-start w-full mt-4">
+                                            <span class=" leading-2 text-white font-bold text-sm mb-3 ">Other criteria
+                                                (150 letters max) :</span>
+                                            <textarea
+                                                class="form-control p-2 block  w-[500px] h-24 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md
+                                                 transition ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                id="exampleFormControlTextarea1" rows="3" minlength="1"
+                                                formControlName="otherCritics"
+                                                placeholder="Remember that the person booking your experience can also book for others.So if there are any age restrictions, certifications, or skill requirements, add them here."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row  items-start w-full gap-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+       
+        <div>
+            <p-dialog header="Your request wast sent Successfully ! " [(visible)]="ConfirmModal" [modal]="true"
+                [style]="{width: '35vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+                <div class="p-6 text-center">
+                    <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"> An administrator will verify your Request within 48H.</h3>
+                    <button type="button" (click)="ConfirmModal=false" [routerLink]="['/aboutHost']"
+                        class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                        id="bouton">
+                        Next Step
+                    </button>
+                </div>
+            </p-dialog>
+        </div>
+        <div class="flex justify-center w-full mb-5 fixed bottom-8">
+            <div class="mt-2 flex items-center justify-between gap-4 w-full max-w-7xl">
+                <div class="flex justify-center ">
+                    <button class="previous-buttonexp border-2  border-rose-500" (click)="step = step-1"
+                        *ngIf="step > 1">Previous</button>
+                </div>
+                <div *ngIf="step <= 1"></div>
+                <div class="flex gap-4" *ngIf="step == (isselected == 'organisation' ? 5 : 5) ">
+                    <div class="flex justify-center  ">
+                        <button class="verify-buttonexp border-2 border-rose-500" (click)="step = step">Verify</button>
+                    </div>
+                    <div class="flex justify-center ">
+                        <button class="primary-buttonexp border-2  border-rose-500" (click)="step = step"
+                            (click)="AddFullExperience()">Confirm</button>
+                    </div>
+                </div>
+                <div class="flex" *ngIf="step < (isselected == 'organisation' ? 5 : 5) ">
+                    <button class="primary-buttonexp   border-2 border-red-500" (click)="step = step+1">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

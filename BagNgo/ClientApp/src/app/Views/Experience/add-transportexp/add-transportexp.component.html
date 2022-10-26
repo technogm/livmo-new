@@ -1,0 +1,191 @@
+<ng-container *ngIf="trans">
+    <button class=" food-buttonexp border-2 border-rose-500 w-fit pl-11 pr-11 border-1"
+        (click)="displayTransport=true">{{trans.vehiculeName}}</button>
+    <p-dialog [(visible)]="displayTransport" class="SpecificModalFood " header="Transport" [modal]="true"
+        [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <div class=" flex items-center justify-start ml-4 ">
+            <div class=" w-full">
+                <div class="mt-2">
+                    <div class="flex flex-row gap-4">
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Vehicule Name :</span>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[200px] h-7">
+                                <input type="text"
+                                    class="form-control outline-none w-full h-5 bg-inherit"
+                                    [(ngModel)]="trans.vehiculeName">
+                            </div>
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Number of Seats :</span>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[200px] h-7">
+                                <input type="text"
+                                    class="form-control outline-none w-full h-5 bg-inherit"
+                                    [(ngModel)]="trans.seats">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-40 mt-2">
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                The Go :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                The Arrival :</span>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-[75px] mt-1">
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                From :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                To :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                From :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                To :</span>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-5">
+                        <div>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                <input type="text"
+                                    class="form-control outline-none w-full h-5 bg-inherit"  [(ngModel)]="trans.toGoFrom">
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                <input type="text" [(ngModel)]="trans.toGoTo"
+                                    class="form-control outline-none w-full h-5 bg-inherit">
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                <input type="text" [(ngModel)]="trans.toReturnFrom"
+                                    class="form-control outline-none w-full h-5 bg-inherit">
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                class=" rounded-lg GreColor px-4 py-1 shadow-md flex items-center gap-4 w-[85px] h-7">
+                                <input type="text" [(ngModel)]="trans.toReturnTo"
+                                    class="form-control outline-none w-full h-5 bg-inherit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-9 mt-2">
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Departure :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Arrival :</span>
+
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Departure :</span>
+                        </div>
+                        <div>
+                            <span
+                                class="font-semibold text-base leading-5 flex items-start mb-2 ">
+                                Arrival :</span>
+                        </div>
+                    </div>
+                <div class="flex flex-row gap-4 w-[400px] mt-2">
+                    <p-calendar [timeOnly]="true" [(ngModel)]="trans.toGoFromDeparture"
+                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                        placeholder="00:00" 
+                        inputId="timeonly"></p-calendar>
+                    <p-calendar [timeOnly]="true"
+                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                        placeholder="00:00" [(ngModel)]="trans.toGoToArrival"
+                        inputId="timeonly"></p-calendar>
+                    <p-calendar [timeOnly]="true"
+                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                        placeholder="00:00" [(ngModel)]="trans.toReturnFromDeparture"
+                        inputId="timeonly"></p-calendar>
+                    <p-calendar [timeOnly]="true"
+                        class="GreyCal flex outline-none  text-xs rounded-lg  shadow-md items-start gap-4 h-6 w-48 "
+                        placeholder="00:00" [(ngModel)]="trans.toReturnToArrival"
+                        inputId="timeonly"></p-calendar>
+                </div>
+                <span
+                    class="font-semibold text-base leading-5 flex items-start mb-2 mt-6 ">
+                    Vehicule Description :</span>
+                <textarea
+                    class="form-control p-2 block w-[420px] h-36 text-base font-normal  bg-clip-padding 
+                    px-4 py-1 shadow-md items-center gap-4 border border-solid border-gray-300 rounded-lg GreColor "
+                    [(ngModel)]="trans.description"></textarea>
+                <input type="file" multiple
+                    class="opacity-0 pointer-events-none absolute flex flex-col  mt-48
+                    rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center"
+                    id="UploadImages"
+                    (change)="uploadedFile($event,'ImageTransport')" />
+                <div class="flex flex-row gap-5 mt-5">
+                    <button type="button"
+                        (click)="clickFakeUpload('UploadImages')"
+                        class=" bg-white rounded-2xl font-bold text-red-500 items-start border-red-500 border-2 w-24 h-9 border-1">Photos</button>
+                </div>
+                <div class="grid grid-cols-2 gap-8 justify-center ">
+                    <div *ngFor="let pic of trans.TransportImages;index as i"
+                        class="relative  ">
+                        <img [src]="pic ? pic.data : 'assets/img/addPhotos.png'"
+                            class="mt-5 w-52 h-36 border-2 rounded-3xl" />
+                        <button
+                            class="absolute p-2 right-0 top-0 mt-4 text-red-500 "
+                            (click)="deleteImg(i)">
+                            <img src="assets/img/x.png "
+                                class="pi pi-times w-4">
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-8 items-center ">
+                    <button
+                        class=" previous-button block w-full px-4 py-2 mt-4 leading-5 text-center"
+                        (click)="delete()">
+                        Delete
+                    </button>
+                    <button
+                        class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+                        (click)="closePrompt()">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </p-dialog>
+</ng-container>

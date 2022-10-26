@@ -1,0 +1,375 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+    font-family: 'Roboto';
+  }  
+.primary-button {
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.75rem 2rem;
+    color: white;
+    text-transform:uppercase ;   
+    font-weight: bold;  
+}
+.primary-buttonexp {
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    text-transform:uppercase ; 
+    padding: 0.75rem 2rem;
+    color: white;
+    width: 154px;
+    height: 52px;  
+    font-weight: bold; 
+}
+
+.verify-buttonexp {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 59.52%, #ffffff 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.75rem 2rem;
+    color: #E22357;
+    text-transform:uppercase ; 
+    width: 154px;
+    height: 52px;  
+    font-weight: bold; 
+ 
+}
+
+.food-buttonexp {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 59.52%, #ffffff 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    color: #E22357;
+    text-transform:uppercase ; 
+    height: 52px;  
+    font-weight: bold; 
+ 
+}
+
+.p-cascadeSelect {
+    scroll-behavior: auto;
+}
+.grid-cols-2 {
+    grid-template-columns: auto 1fr !important;
+} 
+.primary-button-disabled {
+    opacity: 0.4;
+}
+.verif-button-disabled {
+    opacity: 0.4;
+}
+.previous-button {
+    background-color: white;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
+    color: red;
+    text-transform:uppercase ;
+    font-weight: bold;
+    font-weight: bold; 
+
+}
+.check-button {
+    background: linear-gradient(90deg, #04cc0e86 0%, #03ce14d2 59.52%, #16ff01e0 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgb(255, 251, 251);
+    border-radius: 15.0104px;
+    text-transform:uppercase ; 
+    padding: 0.75rem 2rem;    color: white;
+    font-weight: bold;
+
+}
+.previous-buttonexp {
+    background-color: transparent;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
+    color: red;
+    text-transform:uppercase ;
+    font-weight: bold;
+    width: 150px;
+    height: 52px;
+    font-weight: bold; 
+
+}
+.delete-button {
+    background-color: white;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
+    color: black;
+    text-transform:uppercase ;
+    font-weight: bold;
+    
+}
+.p-datepicker table td > span.p-highlight {
+    background: #E22357 !important;
+}
+.verif-button {
+    background: linear-gradient(90deg, #0e0466 0%, #02013a 59.52%, #010008 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.75rem 2rem;
+    color: white;
+    text-transform:uppercase ;
+}
+.AddButton{
+    background: #EBEBEB;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    color: black;
+    font-size: 16px;
+    text-transform:uppercase ;
+}
+.p-inputtext{
+    border: none  !important;
+}
+.p-inputtext:enabled:focus {
+    border-color: white !important;
+    box-shadow: none !important;
+    color: black !important;
+}
+.p-password-panel {
+    background: white !important;
+    color: black !important;
+}
+.p-dropdown{
+    border: none !important;
+}
+.p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none !important;
+}
+.p-button {
+    color: black !important;
+    background-color: white !important;
+    border: none !important;
+}
+.p-inputnumber-buttons-stacked .p-inputnumber-button-group {
+    display: flex;
+    flex-direction: column;
+}
+.p-inputnumber-buttons-stacked .p-inputnumber-input{
+ width: 100%;   
+}
+.p-dropdown{
+    width: 100%;
+}
+.p-dropdown .p-dropdown-panel {
+    max-width: 125% !important;
+    position: absolute;
+}
+.ng-trigger-ng-trigger-overlayAnimation{
+    width: 95% !important;
+}
+.p-dropdown .p-dropdown-panel{
+
+    right: 30px !important;
+}    
+.p-datepicker-timeonly {
+    width: 130px !important;
+    left: -17px !important;
+}
+.p-multiselect{
+    border: none !important;
+    width: 376px !important;
+    margin-left: -12px !important;
+}.p-multiselect-header{
+display: none !important;
+}
+.p-multiselect-token{
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%) !important;
+}
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight{
+    background: white !important;
+    color: #010008 !important;
+}
+.p-checkbox .p-checkbox-box.p-highlight{
+
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%) !important;
+
+}
+.SpecificModal .p-dialog .p-dialog-header .p-dialog-title{
+    width: 260px !important;
+    margin-left: -70px !important;
+    color: #F02F32 !important;
+    height: 31px!important;
+    font-weight: bold !important;
+}
+.SpecificModal .p-dialog .p-dialog-header {
+   padding: 8px !important;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+   border-top-right-radius: 26px !important;
+   border-top-left-radius: 26px !important;
+
+}
+.SpecificModal .p-dialog {
+    margin-top: 90px !important;
+    /*height: 740px !important;*/
+    width: 650px !important;
+   
+}
+.SpecificModal .p-dialog .p-dialog-content{
+     border-bottom-right-radius: 26px !important;
+    border-bottom-left-radius: 26px !important;
+
+}
+.SpecificModalFood .p-dialog .p-dialog-header .p-dialog-title{
+    width: 260px !important;
+    margin-left: -70px !important;
+    color: #F02F32 !important;
+    height: 31px!important;
+    font-weight: bold !important;
+}
+.SpecificModalFood .p-dialog .p-dialog-header {
+   padding: 8px !important;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+   border-top-right-radius: 26px !important;
+   border-top-left-radius: 26px !important;
+
+}
+.SpecificModalFood .p-dialog {
+    margin-top: 90px !important;
+    /*height: 740px !important;*/
+    width: 470px !important;
+   
+}
+.SpecificModalFood .p-dialog .p-dialog-content{
+     border-bottom-right-radius: 26px !important;
+    border-bottom-left-radius: 26px !important;
+
+}
+
+
+.p-rating .p-rating-icon.pi-star-fill {
+    color:  #ec5c5f !important;
+    border-color: #ec5c5f !important;
+
+}
+.p-rating .p-rating-icon {
+    font-size: 20px !important;
+}
+.p-calendar .p-inputtext {
+    text-align: center !important;
+}
+.inputPrice .p-inputnumber-input{
+    width: 120px !important;
+}
+.GouvTransp .p-dropdown .p-dropdown-label.p-placeholder{
+    margin-top: -6px !important;
+}
+.GreyCal .p-calendar .p-inputtext {
+    background-color: #EBEBEB;
+    border-radius: 50px !important;
+}
+.GreColor {
+    background-color: #EBEBEB;
+
+}
+
+.primary-button2 {
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 10px 15px;
+    color: white;
+    text-transform:uppercase ;   
+    font-weight: bold;  
+    font-size: 12px;
+
+
+
+}
+.primary-button3 {
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.60rem 1.5rem;
+    color: white;
+    text-transform:uppercase ;   
+    font-weight: bold;  
+}
+.pay-button{
+    background: linear-gradient(90deg, #2ff032 0%, #23e276 59.52%, #74f19f 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.60rem 2rem;
+    color: white;
+    text-transform:uppercase ;   
+    font-weight: bold;  
+    
+
+
+
+}
+.bb{
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 10px 12px;
+    color: white;
+    text-transform:uppercase ;   
+    font-weight: bold;  
+    font-size: 10px;
+}
+.bb1{
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 59.52%, #ffffff 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 10px 15px;
+    color: rgb(9, 9, 9);
+    text-transform:uppercase ;   
+    font-weight: bold;  
+    font-size: 16px;
+}
+.gradient{
+    background: linear-gradient(90deg, #F02F32 0%, #E22357 59.52%, #DA1D6C 100%);
+
+}
+.verify-buttonexp1 {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 59.52%, #ffffff 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.75rem 2rem;
+    color: #151414;
+    text-transform:uppercase ; 
+    width: 100px;
+    height: 30px;  
+    font-weight: bold; 
+    font-size: 10px;
+ 
+}
+
+.previous-button3 {
+    background-color: white;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
+    color:  rgb(244 63 94);;
+    text-transform:uppercase ;
+    font-weight: bold;
+    font-weight: bold; 
+
+}
+.previous-button2 {
+    background-color: white;
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
+    color: rgb(18, 11, 41);
+    text-transform:uppercase ;
+    font-weight: bold;
+    font-weight: bold; 
+
+}
+.verif-button2 {
+    background: linear-gradient(90deg, #0e0466 0%, #02013a 59.52%, #010008 100%);
+    box-shadow: 1.50104px 3.00208px 4.50313px rgba(0, 0, 0, 0.25);
+    border-radius: 15.0104px;
+    padding: 0.60rem 1.5rem;
+    color: white;
+    text-transform:uppercase ;
+}

@@ -1,0 +1,504 @@
+<div class="inline-flex overflow-hidden w-fit relative flex-col ml-80 ">
+    <span class=" mt-36 "></span>
+    <div class="rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 ">
+        <div class="image overflow-hidden ">
+            <img class="object-cover rounded-full h-36 w-36 " src={{photoLink}}>
+        </div>
+        <span class="font-bold text-3xl leading-10 text-black-500 ">{{name}}/</span>
+        <span class=" text-xl leading-10 text-black-500 ">Account Setting </span>
+    </div>
+</div>
+
+<div class="bg-white-100">
+    <div class="container mx-auto my-5 p-5">
+        <div class="md:flex no-wrap md:-mx-2 ">
+            <!-- Left Side -->
+            <div class="w-full md:w-5/12 md:mx-2 ">
+
+                <div class="my-4"></div>
+                <!-- Friends card -->
+                <div class="bg-white ml-80">
+
+                    <div>
+                        <div class="my-4">
+                            <span class="font-bold text-xl leading-4 tracking-widest mb-3">Setting :</span>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='personal'}" (click)="OpenP()">Personal Information </a>
+                        </div>
+
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='connect'}" (click)="OpenC()">Connection & Security</a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='help'}" (click)="OpenH()">Help </a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='out'}" (click)="OpenL() " (click)="logout()">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Right Side -->
+            <ng-container *ngIf="isSelected == 'personal'&& typeHost=='individual'">
+                <div class="w-full md:w-8/12 h-full ml-40">
+                    <div class="bg-white p-3 shadow-sm rounded-sm">
+                        <form [formGroup]="updateForm">
+                            <div class="flex flex-col mt-6  items-start w-fit">
+                                <div class=" px-4 py-1 flex items-center gap-4 ">
+                                    <div class="image overflow-hidden ">
+                                        <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'"
+                                            alt="" class="w-36 h-36 rounded-full">
+                                    </div>
+                                    <div class=" p-8 z-10">
+                                        <button type="file" class="primary-button  " id="bouton"
+                                            (click)="clickFakeUpload('UploadProfile');changeProfilePic()"> change
+                                            profile
+                                            picture </button>
+                                        <input type="file" class="opacity-0 pointer-events-none absolute"
+                                            id="UploadProfile" (change)="uploadedFile($event,'profile')" />
+
+                                    </div>
+
+                                    <div class=" z-10">
+                                        <button class="check-button" (click)="UpdateProfilePic()"> Update
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class=" mt-4 mb-4 font-bold text-2xl leading-10 pl-40"> Change your informations</span>
+                                <div class="grid grid-cols-2 gap-x-32 gap-y-10 mt-4  w-full">
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Full Name :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 border-2 shadow-md flex items-center  w-full">
+                                            <input type="text" name="legalName" [(ngModel)]="currentData.legalName"
+                                                formControlName="legalName" class="outline-none w-full h-10">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12   border-2 shadow-md flex items-center w-full ">
+                                            <input type="text " [(ngModel)]="currentData.telephone"
+                                                class="form-control outline-none  h-10" formControlName="telephone">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.gouvernorate"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="gouvernorate">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Address :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12  border-2 shadow-md  flex items-center gap-4 w-full ">
+                                            <input type="text" formControlName="adresse"
+                                                [(ngModel)]="currentData.adresse"
+                                                class="form-control outline-none w-full h-10">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> delegation :</span>
+
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 py-3 mb-2 border-2 shadow-md flex items-center gap-4 w-full">
+                                            <input type="text" [(ngModel)]="currentData.delegation"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="delegation">
+                                        </div>
+                                    </div>
+                                    <div class="items-start mb-2">
+                                        <span class="font-semibold text-base leading-5 "> CIN Copy File
+                                        </span>
+                                        <div
+                                            class="rounded-xl bg-white border-2 shadow-md h-12 flex items-center gap-4">
+                                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer rounded-md px-5 "
+                                                (click)="clickFakeUpload('UploadIdF')">FILE</div>
+                                            <input type="file" class="opacity-0 pointer-events-none absolute  "
+                                                id="UploadIdF" (change)="uploadCINFile($event,'CopyIdFile')" />
+                                            <input type="text" class="outline-none  rounded-md "
+                                                formControlName="cinCopy" [(ngModel)]="CopyIdFile.name" readonly
+                                                placeholder="File">
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <span> Supported files: pdf, jpeg, xls ...</span>
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <a href="{{currentData.cinCopy}}" target="_blank"
+                                                class="text-blue-600 dark:text-blue-500 hover:underline"> Your
+                                                current file</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid grid-cols-2 gap-16 justify-center mt-4 max-w-4xl w-full">
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="verif-button  border-x-blue-900" routerLinkActive="active"
+                                                [routerLink]="['/aboutHost']">RETURN TO PROFILE</button>
+                                        </div>
+
+
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="primary-button" id="bouton" type="submit"
+                                                (click)="updatenewHost(updateForm)"> SAVE CHANGES</button>
+                                        </div>
+
+                                    </div>
+
+                                    <p-dialog [(visible)]="showAlert" [modal]="true" [style]="{ width: '30vw' }"
+                                        [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+                                        <div class="p-6 text-center">
+
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Update
+                                                Successfully...</h3>
+                                            <button type="button" (click)="AddFiles()"
+                                                class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                                id="bouton">
+                                                NEXT
+                                            </button>
+
+                                        </div>
+
+                                    </p-dialog>
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isSelected == 'personal'&& typeHost=='organisation'">
+                <div class="w-full md:w-8/12 mx-2 h-full">
+                    <!-- About Section -->
+                    <div class="bg-white p-3 shadow-sm rounded-sm">
+
+                        <form [formGroup]="updateForm2">
+                            <div class="flex flex-col mt-6  items-start w-fit">
+                                <div class=" px-4 py-1 flex items-center gap-4 ">
+                                    <div class="image overflow-hidden ">
+                                        <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'"
+                                            alt="" class="w-36 h-36 rounded-full">
+                                    </div>
+                                    <div class=" p-8 z-10">
+                                        <button type="file" class="primary-button  " id="bouton"
+                                            (click)="clickFakeUpload('UploadProfile');changeProfilePic()"> change
+                                            profile
+                                            picture </button>
+                                        <input type="file" class="opacity-0 pointer-events-none absolute"
+                                            id="UploadProfile" (change)="uploadedFile($event,'profile')" />
+
+                                    </div>
+
+                                    <div class=" z-10">
+                                        <button class="check-button" (click)="UpdateProfilePic()"> Update
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class=" mt-4 mb-4 font-bold text-2xl leading-10 pl-40"> Change your informations</span>
+                                <div class="grid grid-cols-2 gap-x-32 gap-y-8 mt-4  w-full">
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Company Name :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 border-2 shadow-md flex items-center  w-full">
+                                            <input type="text" name="legalName" [(ngModel)]="currentData.legalName"
+                                                formControlName="legalName" class="outline-none w-full h-10">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Contact Person :</span>
+
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12   border-2 shadow-md flex items-center w-full ">
+                                            <input type="text " [(ngModel)]="currentData.persAContact" 
+                                                class="form-control outline-none  h-10" formControlName="persAContact">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12   border-2 shadow-md flex items-center w-full ">
+                                            <input type="text " [(ngModel)]="currentData.telephone" 
+                                                class="form-control outline-none  h-10" formControlName="telephone">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.gouvernorate"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="gouvernorate">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.numCnss"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="numCnss">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> TAX Registration Number :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.taxNum"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="taxNum">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Male Workforce :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.maleWorkforce"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="maleWorkforce">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Female Workforce :</span>
+
+                                        <div
+                                            class=" rounded-xl lg bg-white px-8 h-12   border-2 shadow-md flex items-center gap-4 w-full ">
+                                            <input type="text" [(ngModel)]="currentData.femaleWorkforce"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="femaleWorkforce">
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Address :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12  border-2 shadow-md  flex items-center gap-4 w-full ">
+                                            <input type="text" formControlName="adresse"
+                                                [(ngModel)]="currentData.adresse"
+                                                class="form-control outline-none w-full h-10">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> delegation :</span>
+
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 py-3 mb-2 border-2 shadow-md flex items-center gap-4 w-full">
+                                            <input type="text" [(ngModel)]="currentData.delegation"
+                                                class="form-control outline-none w-full h-10"
+                                                formControlName="delegation">
+                                        </div>
+                                    </div>
+                                    <div class="items-start mb-2">
+                                        <span class="font-semibold text-base leading-5 items-start"> RNE File </span>
+                                        <div
+                                            class="rounded-xl bg-white border-2 shadow-md h-12 flex items-center gap-4">
+                                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer rounded-md px-5 "
+                                                (click)="clickFakeUpload('UploadIdFl')">FILE</div>
+                                            <input type="file" class="opacity-0 pointer-events-none absolute  "
+                                                id="UploadIdFl" (change)="uploadRNEFile($event,'CopyIdFile3')" />
+                                            <input type="text" class="outline-none  rounded-md "
+                                                formControlName="rneCopy" [(ngModel)]="CopyIdFile3.name" readonly
+                                                placeholder="File">
+
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <span> Supported files: pdf, jpeg, xls ...</span>
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <a href="{{currentData.rneCopy}}" target="_blank"
+                                                class="text-blue-600 dark:text-blue-500 hover:underline"> Your
+                                                current file</a>
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-4  -ml-1" *ngIf="CopyIdFile3.name !='File'">
+                                            <span class="text-red-600 p-1"> Click here to save your new RNE..</span>
+                                            <button (click)="DeleteRne()" class=" text-white border-1 w-5 h-5 bg-green-900">✓</button>
+
+                                        </div>
+                                    </div>
+                                    <div class="items-start">
+                                        <span class="font-semibold text-base leading-5 "> Licence File : </span>
+                                        <div
+                                            class="rounded-xl bg-white border-2 shadow-md h-12 flex items-center gap-4">
+                                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer rounded-md px-5 "
+                                                (click)="clickFakeUpload('UploadIdF')">FILE</div>
+                                            <input type="file" class="opacity-0 pointer-events-none absolute  "
+                                                id="UploadIdF" (change)="uploadLicenceFile($event,'CopyIdFile2')" />
+                                            <input type="text" class="outline-none  rounded-md "
+                                                formControlName="licenceCopy" [(ngModel)]="CopyIdFile2.name" readonly
+                                                placeholder="File">
+                                        </div>
+                                       
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <span> Supported files: pdf, jpeg, xls ...</span>
+                                        </div>
+                                        <div class="flex w-[10] leading-3 mt-1">
+                                            <a href="{{currentData.licenceCopy}}" target="_blank"
+                                                class="text-blue-600 dark:text-blue-500 hover:underline"> Your
+                                                current file</a>
+                                        </div>
+
+                                        <div class="flex w-[10] leading-3 mt-4 " *ngIf="CopyIdFile2.name !='File'">
+                                            <span class="text-red-600 p-1"> Click here to save your new Licence..</span>
+                                            <button (click)="DeleteLicence()" class=" text-white border-1 w-5 h-5 bg-green-900">✓</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-16 justify-center mt-4 max-w-4xl w-full">
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="verif-button  border-x-blue-900" routerLinkActive="active"
+                                                [routerLink]="['/aboutHost']">RETURN TO PROFILE</button>
+                                        </div>
+
+
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="primary-button" id="bouton" type="submit"
+                                                (click)="updatenewHost2(updateForm2)"> SAVE CHANGES</button>
+                                        </div>
+
+                                    </div>
+
+                                    <p-dialog [(visible)]="showrneAlert" [modal]="true" [style]="{ width: '30vw' }"
+                                    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+                                    <div class="p-6 text-center">
+
+                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Your RNE is Updated !</h3>
+                                        <button type="button" (click)="AddRne()"
+                                            class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                            id="bouton">
+                                            NEXT
+                                        </button>
+                                    </div>
+                                </p-dialog>
+                                <p-dialog [(visible)]="showlicenceAlert" [modal]="true" [style]="{ width: '30vw' }"
+                                    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+                                    <div class="p-6 text-center">
+
+                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Your Licence is Updated !
+                                            </h3>
+                                        <button type="button" (click)="AddLicence()"
+                                            class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                            id="bouton">
+                                            NEXT
+                                        </button>
+                                    </div>
+                                </p-dialog>
+
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
+                  
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="isSelected == 'connect'">
+                <div class="w-full md:w-8/12 mx-2 h-full">
+
+                    <div class=" p-3 shadow-sm rounded-sm">
+                        <span class="font-bold text-2xl leading-10 pl-40"> Connection & Security</span>
+                    </div>
+                    <div class=" p-3 shadow-sm rounded-sm">
+                        <div class="flex flex-col mt-6 mb-14 items-center w-full">
+
+                            <div class="grid grid-cols-1 gap-4 justify-center  max-w-4xl w-full">
+                                <div class=" ">
+                                    <span class=" text-xl leading-10 "> Sessions :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-0 w-full border-2">
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full border-2">
+
+
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <span class=" text-xl leading-10 "> Change your password :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80">
+                                        <input type="password" placeholder="Current Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="New Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="Confirm new Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div class=" p-8 z-10">
+                                        <button class="primary-button" id="bouton"> SAVE CHANGES</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.style{
+    color: blue;
+
+}
+input[type="radio"] {
+    display: none;
+}
+
+label {
+  padding: 10px 20px;
+  background-color: orange;
+  border: thin solid darkorange;
+  border-radius: 10px;
+  margin:5px;
+  display: inline-block;
+}
+
+input[type="radio"]:checked + label {
+    background-color: darkblue;
+    cursor: default;
+    color: #E6E6E6;
+}

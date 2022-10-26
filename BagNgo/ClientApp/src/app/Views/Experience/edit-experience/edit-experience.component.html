@@ -1,0 +1,1489 @@
+<div class="container relative mt-32">
+    <img class=" h-80 w-full" src="assets/img/createxp.png">
+    <span class="centered font-bold text-4xl leading-10 text-white ">EDIT EXPERIENCE</span>
+
+
+</div>
+<ng-container *ngIf="datetype == 'open date'">
+    <div class="container">
+        <div class="flex flex-col mt-4  w-full space-y-5">
+
+
+            <form>
+                <div class="p-2 mt-10 rounded-lg bg-white  h-10 shadow-md w-80 border-2 ml-20 ">
+
+                    <span class=" ml-4  font-bold text-rose-500 tracking-widest text-xl  "> Experience Name</span>
+                </div>
+                <img class="ml-20 mt-2 w-32" src="assets/img/Line.png" alt="" />
+
+
+                <div class=" my-4 flex flex-col w-full justify-center px-20">
+
+
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Sub-Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="subTheme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Location :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="location" placeholder="Experience  Location">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Price Per Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="price" placeholder="Price">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Spots :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="spots" placeholder="Spots ">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Maps Link :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="mapLocation" placeholder="Maps Link ">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Season :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Season" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Date Type :</span>
+                            <div class=" rounded-lg bg-white shadow-md items-center gap-4 w-40 mt-2">
+                                <p-dropdown placeholder="Type Date" class="outline-none w-full h-8" optionLabel="name"
+                                    [options]="dateType" formControlName="datType" [(ngModel)]="SelectedDate">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Duration (Days) :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="days" placeholder=" Duration (Days)">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Duration (Hours) :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="hours" placeholder="Duration (Hours) ">
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Experience Description :</span>
+
+                    <div
+                        class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                        <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea
+                            formControlName="description"
+                            placeholder="Explain to the participents the course of your experience"></textarea>
+
+
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Minimum Age :</span>
+                            <div
+                                class="p-field  rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-inputNumber [showButtons]="true" inputId="expiry" prefix="" suffix=" Years Old"
+                                    formControlName="minAge">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Pets:</span>
+                            <label for="red-toggle1"
+                                class="inline-flex relative items-center mr-5 cursor-pointer gap-4 mt-2 ">
+                                <input type="checkbox" value="ch1" id="red-toggle1" class="sr-only peer"
+                                    formControlName="petsAllowed">
+                                <div
+                                    class="w-28 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4  peer-focus:ring-red-300 
+                                                    dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                                    after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                                    after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <span class=" mt-4 font-semibold text-xl leading-5 text-black">Other criteria :</span>
+
+                            <div
+                                class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                    pInputTextarea></textarea>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class=" py-8 my-4 flex flex-col w-full justify-center px-20">
+                <form>
+                    <div class="mt-8">
+                        <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Activity :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Activity">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Duration</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Duration">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Activity’s Description :</span>
+
+                        <div
+                            class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                            <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                pInputTextarea></textarea>
+
+
+
+
+
+                        </div>
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                        <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                            </div>
+                            <div>
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <form>
+
+                    <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Dish 1:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Dish 1">
+                                </div>
+                            </div>
+
+
+                            <div class="col-span-3">
+                                <span class=" mt-4 font-semibold text-xl leading-5 text-black">Dish 1 Description
+                                    :</span>
+
+                                <div
+                                    class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+
+
+                                    <span class="tracking-wide  text-sm	 text-black-500 ">Lorem ipsum dolor sit amet,
+                                        consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                        magna aliqua. Ut enim adveniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex
+                                        ea commodo c
+                                        onsequat. Duis aute irure dolor in reprehenderit in velit esse cillum dolore eu
+                                        fugiat nulla
+                                        pariatu.
+                                    </span>
+
+
+
+                                </div>
+                            </div>
+                            <div></div>
+
+
+                        </div>
+
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                        <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                            </div>
+                            <div>
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Transport:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Seats :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> From :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">To:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="To">
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Vehicule Rules :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Vehicule Rules">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Departure :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Departure">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Arrival:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Arrival">
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Lodging Category :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Lodging Type :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats">
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-96">
+                                <span class="font-semibold text-xl leading-5 text-black "> Adresse :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col  items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Begins :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Begins">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Ends :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Ends">
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+
+
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Lodging Description
+                                    :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Instructions :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Criteria :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                    <span class="  font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+
+
+
+        </div>
+        <button class=" primary-button 	px-4 py-2 mt-4 leading-5 text-center  ">
+            Confirm
+        </button>
+    </div>
+</ng-container>
+<ng-container *ngIf="datetype == 'specificdate'">
+    <div class="container">
+        <div class="flex flex-col mt-4  w-full space-y-5">
+
+
+            <form>
+                <div class="p-2 mt-10 rounded-lg bg-white  h-10 shadow-md w-80 border-2 ml-20 ">
+
+                    <span class=" ml-4  font-bold text-rose-500 tracking-widest text-xl  "> Experience Name</span>
+                </div>
+                <img class="ml-20 mt-2 w-32" src="assets/img/Line.png" alt="" />
+
+
+                <div class=" my-4 flex flex-col w-full justify-center px-20">
+
+
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="SeasonType"
+                                    [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Sub-Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="subTheme" [options]="SeasonType"
+                                    [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Location :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="location" placeholder="Experience  Location">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Price Per Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="price" placeholder="Price">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Spots :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="spots" placeholder="Spots ">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Maps Link :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="mapLocation" placeholder="Maps Link ">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Season :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Season" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Date Type :</span>
+                            <div class=" rounded-lg bg-white shadow-md items-center gap-4 w-40 mt-2">
+                                <p-dropdown placeholder="Type Date" class="outline-none w-full h-8" optionLabel="name"
+                                    formControlName="datType"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Date:</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-calendar formControlName="dateIntervalle" name="dateIntervalle" selectionMode="range"
+                                    inputId="range"></p-calendar>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Experience Description :</span>
+
+                    <div
+                        class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                        <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea
+                            formControlName="description"
+                            placeholder="Explain to the participents the course of your experience"></textarea>
+
+
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Minimum Age :</span>
+                            <div
+                                class="p-field  rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-inputNumber [showButtons]="true" inputId="expiry" prefix="" suffix=" Years Old"
+                                    formControlName="minAge">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Pets:</span>
+                            <label for="red-toggle1"
+                                class="inline-flex relative items-center mr-5 cursor-pointer gap-4 mt-2 ">
+                                <input type="checkbox" value="ch1" id="red-toggle1" class="sr-only peer"
+                                    formControlName="petsAllowed">
+                                <div
+                                    class="w-28 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4  peer-focus:ring-red-300 
+                                                            dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                                            after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                                            after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <span class=" mt-4 font-semibold text-xl leading-5 text-black">Other criteria :</span>
+
+                            <div
+                                class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                    pInputTextarea></textarea>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class=" py-8 my-4 flex flex-col w-full justify-center px-20">
+                <form>
+                    <div class="mt-8">
+                        <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Activity :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Activity">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Duration</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Duration">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Activity’s Description :</span>
+
+                        <div
+                            class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                            <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                pInputTextarea></textarea>
+
+
+
+
+
+                        </div>
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                        <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                            </div>
+                            <div>
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <form>
+
+                    <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Dish 1:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Dish 1">
+                                </div>
+                            </div>
+
+
+                            <div class="col-span-3">
+                                <span class=" mt-4 font-semibold text-xl leading-5 text-black">Dish 1 Description
+                                    :</span>
+
+                                <div
+                                    class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+
+
+                                    <span class="tracking-wide  text-sm	 text-black-500 ">Lorem ipsum dolor sit amet,
+                                        consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                        magna aliqua. Ut enim adveniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex
+                                        ea commodo c
+                                        onsequat. Duis aute irure dolor in reprehenderit in velit esse cillum dolore eu
+                                        fugiat nulla
+                                        pariatu.
+                                    </span>
+
+
+
+                                </div>
+                            </div>
+                            <div></div>
+
+
+                        </div>
+
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                        <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                            </div>
+                            <div>
+                                <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Transport:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Seats :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> From :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">To:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="To">
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Vehicule Rules :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Vehicule Rules">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Departure :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Departure">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Arrival:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Arrival">
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Lodging Category :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Lodging Type :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats">
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-96">
+                                <span class="font-semibold text-xl leading-5 text-black "> Adresse :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col  items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Begins :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Begins">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Ends :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Ends">
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+
+
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Lodging Description
+                                    :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Instructions :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-span-2">
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Criteria :</span>
+
+                                <div
+                                    class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+
+
+
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30"
+                                        pInputTextarea></textarea>
+
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                    <span class="  font-semibold text-xl leading-5 text-black">Photos:</span>
+
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png">
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png">
+
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png">
+
+
+                        </div>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+
+
+
+        </div>
+        <button class=" primary-button 	px-4 py-2 mt-4 leading-5 text-center  ">
+            Confirm
+        </button>
+    </div>
+
+</ng-container>
+<ng-container *ngIf="datetype == 'intervalldate'">
+    <div class="container">
+        <div class="flex flex-col mt-4  w-full space-y-5">
+        
+        
+            <form >
+                <div class="p-2 mt-10 rounded-lg bg-white  h-10 shadow-md w-80 border-2 ml-20 ">
+                       
+                    <span class=" ml-4  font-bold text-rose-500 tracking-widest text-xl  "> Experience Name</span>
+                </div>
+                <img class="ml-20 mt-2 w-32" src="assets/img/Line.png" alt="" />
+        
+               
+                <div class=" my-4 flex flex-col w-full justify-center px-20">
+                    
+                    
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Sub-Theme :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Theme" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="subTheme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience  Location  :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="location"  placeholder="Experience  Location" >
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Price Per Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="price" placeholder="Price" >
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Spots :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="spots" placeholder="Spots " >
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Maps Link :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="mapLocation" placeholder="Maps Link " >
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Season :</span>
+                            <div class=" rounded-lg bg-white  shadow-md mt-1 items-center gap-4 w-full">
+                                <p-dropdown placeholder="Season" class="outline-none w-full h-9 text-left"
+                                    optionLabel="name" formControlName="theme" [options]="SeasonType"
+                                    [(ngModel)]="SelectedSeason" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Date Type :</span>
+                            <div class=" rounded-lg bg-white shadow-md items-center gap-4 w-40 mt-2">
+                                <p-dropdown placeholder="Type Date" class="outline-none w-full h-8"
+                                    optionLabel="name" formControlName="datType"
+                                   ></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Experience Time Intervals:</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-calendar   formControlName="dateIntervalle" name="dateIntervalle" selectionMode="range"  inputId="range"></p-calendar>
+        
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-star col-span-2">
+                            <span class="font-semibold text-xl leading-5 text-black "> Days off :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-calendar  class="" formControlName="dateIntervalle" name="dateIntervalle" selectionMode="multiple" [readonlyInput]="true" inputId="multiple"  ></p-calendar>
+        
+                            </div>
+                        </div>
+         
+        
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Experience Description :</span>
+        
+                    <div class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                        <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea formControlName="description"
+                        placeholder="Explain to the participents the course of your experience" ></textarea>
+            
+                        
+                    </div>
+        
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Minimum Age :</span>
+                            <div class="p-field  rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <p-inputNumber [showButtons]="true" inputId="expiry" prefix=""
+                                    suffix=" Years Old" formControlName="minAge">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Pets:</span>
+                            <label for="red-toggle1"
+                                                        class="inline-flex relative items-center mr-5 cursor-pointer gap-4 mt-2 ">
+                                                        <input type="checkbox" value="ch1" id="red-toggle1" class="sr-only peer"
+                                                            formControlName="petsAllowed">
+                                                        <div
+                                                            class="w-28 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4  peer-focus:ring-red-300 
+                                                            dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                                            after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border 
+                                                            after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500">
+                                                        </div>
+                                                    </label>
+                        </div>
+                        <div class="col-span-2">
+                        <span class=" mt-4 font-semibold text-xl leading-5 text-black">Other criteria :</span>
+        
+                        <div class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+        
+                           
+            
+                            <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea ></textarea>
+                               
+                            
+            
+            
+            
+                        </div>
+                        </div>
+        
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+        
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                           <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                            
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png" >
+        
+                        
+                        </div>
+        
+                    </div>
+                    </div>
+            </form>
+            
+            <div class=" py-8 my-4 flex flex-col w-full justify-center px-20">
+                <form>
+                    <div class="mt-8">
+                    <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Activity :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="title" placeholder="Activity" >
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Duration</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="title" placeholder="Duration" >
+                            </div>
+                        </div>
+                        
+                        
+        
+                    </div>
+                   <span class=" mt-4 font-semibold text-xl leading-5 text-black">Activity’s Description :</span>
+        
+                    <div class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+                        <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea ></textarea>
+            
+                        
+        
+        
+        
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+        
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                           <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                            
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png" >
+        
+                        
+                        </div>
+        
+                    </div>
+                    </div>
+                </form>
+                <form>
+        
+                    <img class="mt-2 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                    <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-xl leading-5 text-black "> Dish 1:</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                    formControlName="title" placeholder="Dish 1" >
+                            </div>
+                        </div>
+        
+                        
+                        <div class="col-span-3">
+                            <span class=" mt-4 font-semibold text-xl leading-5 text-black">Dish 1 Description :</span>
+        
+                    <div class="p-4 flex flex-col rounded-lg bg-white  h-[155px]  shadow-md  gap-0 w-full border-2 mt-4 space-y-4">
+        
+            
+                        <span class="tracking-wide  text-sm	 text-black-500 ">Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua. Ut enim adveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                            ea commodo c
+                            onsequat. Duis aute irure dolor in reprehenderit in velit esse cillum dolore eu fugiat nulla
+                            pariatu.
+                        </span>
+        
+        
+        
+                    </div>
+                        </div>
+                        <div></div>
+                        
+        
+                    </div>
+                   
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+        
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                           <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                            
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png" >
+        
+                        
+                        </div>
+        
+                    </div>
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Transport:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Seats :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> From :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">To:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="To" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Vehicule Rules  :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Vehicule Rules" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Departure :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Departure" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Arrival:</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Arrival" >
+                                </div>
+                            </div>
+                  
+                     
+                            
+            
+                        </div>
+                    </div>
+                    <span class=" mt-4 font-semibold text-xl leading-5 text-black">Photos:</span>
+        
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                           <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                            
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png" >
+        
+                        
+                        </div>
+        
+                    </div>
+                </form>
+                <form>
+                    <img class="mt-4 w-full h-0.5" src="assets/img/Line.png" alt="" />
+                    <div class="mt-8">
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Lodging Category :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Transport" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black ">Lodging Type :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Seats" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col col-span-2 items-start w-96">
+                                <span class="font-semibold text-xl leading-5 text-black "> Adresse :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="From" >
+                                </div>
+                            </div>
+                         
+                            <div class="flex flex-col  items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Begins :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder="Begins" >
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start w-full">
+                                <span class="font-semibold text-xl leading-5 text-black "> Ends :</span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md mt-1 items-center gap-4 w-full">
+                                    <input type="text" name="CompanyName" class="outline-none  h-8 w-full"
+                                        formControlName="title" placeholder=" Ends" >
+                                </div>
+                            </div>
+                            
+                  
+                     
+                            
+            
+                        </div>
+                        <div class="grid grid-cols-4 gap-x-20 gap-y-10 justify-start mt-2">
+                          
+                           
+                            <div class="col-span-2" >
+                                <span class=" mt-2 font-semibold text-xl leading-5 text-black">Lodging Description :</span>
+                
+                                <div class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+                
+                                   
+                    
+                                    <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea ></textarea>
+                                       
+                                    
+                    
+                    
+                    
+                                </div>
+                                </div>
+        
+                                <div class="col-span-2">
+                                    <span class=" mt-2 font-semibold text-xl leading-5 text-black">Instructions :</span>
+                    
+                                    <div class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+                    
+                                       
+                        
+                                        <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea ></textarea>
+                                           
+                                        
+                        
+                        
+                        
+                                    </div>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <span class=" mt-2 font-semibold text-xl leading-5 text-black">Criteria :</span>
+                        
+                                        <div class="p-4 flex flex-col w-full rounded-lg bg-white    shadow-md  gap-0  border-2  space-y-4">
+                        
+                                           
+                            
+                                            <textarea class="tracking-wide  text-sm	 text-black-500 " rows="5" cols="30" pInputTextarea ></textarea>
+                                               
+                                            
+                            
+                            
+                            
+                                        </div>
+                                        </div>
+                         
+                            
+                           
+                            
+                  
+                     
+                            
+            
+                        </div>
+                    </div>
+                    <span class="  font-semibold text-xl leading-5 text-black">Photos:</span>
+        
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 justify-start mt-2">
+                        <div class="flex flex-col items-start w-full">
+                           <img class="  rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/createxp.png" >
+                            
+                        </div>
+                        <div>
+                            <img class=" rounded-xl h-80 w-full" src="assets/img/addPhoto.png" >
+        
+                        
+                        </div>
+        
+                    </div>
+                </form>
+        
+        
+                
+            </div>
+         
+         
+            
+        </div>
+        <button class=" primary-button 	px-4 py-2 mt-4 leading-5 text-center  ">
+            Confirm
+        </button>
+        </div>
+
+</ng-container>

@@ -1,0 +1,104 @@
+<div class="flex flex-col mt-20 bg-cover bg-bottom relative w-full h-[870px]"
+    style="background-image: url(assets/img/homepic.png)">
+    <div class="flex justify-center mt-40 z-10 w-full gap-8 p-4 text-xl">
+        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 h-14">
+            <i class="pi pi-map-marker text-rose-500 "></i>
+            <input type="text" class="outline-none w-64 h-12" placeholder="Localisation">
+        </div>
+        <div class="rounded-lg bg-white px-4 py-1 w-fit h-14 shadow-md">
+            <input type="text" class="outline-none w-fit h-12" placeholder="Position" >
+
+        </div>
+        <div class="rounded-lg bg-white px-4 py-1 w-fit h-14 shadow-md">
+            <input type="text" class="outline-none w-fit h-12" placeholder="Position" >
+        </div>
+        <div class="primary-button flex items-center justify-center px-4 py-1 w-16 h-14 rounded-md">
+            <i class="pi pi-search"></i>
+
+        </div>
+    </div>
+    <div class="mt-14 flex flex-col p-4 z-10">
+        <div class="w-2/5 text-white text-7xl font-bold leading-snug tracking-widest ">YOU DON’T KNOW
+            WHERE TO GO?
+            PERFECT!</div>
+    </div>
+    <div class=" p-8 z-10">
+        <button class="primary-button"> Let's Go</button>
+    </div>
+</div>
+<div class="py-14 px-20 ">
+    <p-carousel [value]="themes" [autoplayInterval]="6000" [circular]="true" [numVisible]="4" [numScroll]="1">
+
+        <ng-template let-theme pTemplate="item">
+            <div [style]="'background-image:url('+ theme.image +')'" [class]="theme.id % 2 == 0 ? 'mt-28' : 'mb-28'"
+                class="mx-10 rounded-xl flex h-[650px] w items-center justify-center bg-black p-4 text-white text-3xl font-bold bg-cover">
+                {{theme.title}}
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+<div class="flex justify-center mt-4 text-5xl font-bold "> Discover the secheduled Experiences </div>
+<div class="flex justify-center w-full mt-16 mb-14  ">
+    <div class="grid grid-cols-2 gap-10 justify-center max-w-2xl">
+        <div class="flex flex-col items-center rounded-xl  h-80 w-[600px] justify-center p-4 text-white text-3xl font-bold bg-cover "
+            style="background-image: url(assets/img/carthage.png)">
+            <div class="flex text-3xl font-bold tracking-widest"> Carthage Festival </div>
+        </div>
+        <div class="flex flex-col items-center rounded-xl h-80 w-[600px] justify-center p-4 text-white text-3xl font-bold bg-cover  "
+            style="background-image: url(assets/img/dunes.png)">
+            <div class="flex text-3xl font-bold tracking-widest"> The Electronic Dunes </div>
+        </div>
+        <div
+            class="flex flex-col items-start rounded-xl h-80 w-[600px] justify-center p-4 text-black text-3xl font-bold ">
+            <div class="flex text-5xl font-bold tracking-widest mb-2 "> Explore every corner </div>
+            <div class="flex text-5xl font-bold tracking-widest mb-2"> of the country </div>
+            <div class="flex text-5xl font-bold tracking-widest mb-2 "> with us ! </div>
+            <span class="font-bold text-sm leading-4 tracking-widest mb-3 text-red-500">Discover how it works ! </span>
+
+        </div>
+        <div class="flex flex-col items-center rounded-xl h-80 w-[600px] justify-center p-4 text-white text-3xl font-bold "
+            style="background-image: url(assets/img/discover.png)">
+            <button class="verify-buttonexp text-lg">Discover</button>
+        </div>
+    </div>
+</div>
+<div class="flex justify-center mt-4 text-5xl font-bold"> Become a service provider </div>
+<div class="flex justify-center w-full mt-16 mb-14  ">
+    <div class="grid grid-cols-2 gap-10 justify-center max-w-2xl">
+        <button
+            class="flex flex-col items-center rounded-xl  h-80 w-[600px] justify-center p-4 text-white text-3xl font-bold bg-cover "
+            style="background-image: url(assets/img/bchost.png)">
+            <div class="flex text-3xl font-bold tracking-widest"> Become a Host </div>
+        </button>
+        <button
+            class="flex flex-col items-center rounded-xl h-80 w-[600px] justify-center p-4 text-white text-3xl font-bold bg-cover "
+            style="background-image: url(assets/img/bcmarchant.png)">
+            <div class="flex text-3xl font-bold tracking-widest"> Become a Marchant </div>
+        </button>
+    </div>
+</div>
+<div class="flex justify-center mt-4 text-5xl font-bold"> Why Book with LIVMO ? </div>
+<div class="mb-32"></div>
+<div class="mt-8">
+    <fieldset class="border-t-4 border-b-0 border-black border">
+        <legend class=" px-4 text-red-500 text-3xl font-bold mx-auto leading-4 tracking-widest "> Follow Us #LIVMO
+        </legend>
+    </fieldset>
+</div>
+
+<div class="flex justify-center w-full mt-16 mb-28">
+    <div class="grid grid-cols-4 gap-24 justify-center max-w-7xl ">
+        <div class="flex flex-col items-center rounded-xl h-[250px] w-[250px] justify-center p-4 text-white text-3xl font-bold bg-cover  mb-28 "
+            style="background-image: url(assets/img/follow1.png)">
+        </div>
+        <div class="flex flex-col items-center rounded-xl h-[250px] w-[250px] justify-center p-4 text-white text-3xl font-bold bg-cover mt-28 "
+            style="background-image: url(assets/img/follow2.png)">
+        </div>
+        <div class="flex flex-col items-center rounded-xl h-[250px] w-[250px] justify-center p-4 text-white text-3xl font-bold bg-cover mb-28 "
+            style="background-image: url(assets/img/follow3.png)">
+        </div>
+        <div class="flex flex-col items-center rounded-xl h-[250px] w-[250px] justify-center p-4 text-white text-3xl font-bold bg-cover mt-28 "
+            style="background-image: url(assets/img/follow4.png)">
+        </div>
+    </div>
+</div>

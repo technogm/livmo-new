@@ -1,0 +1,13 @@
+<div class="flex w-full items-center justify-center " *ngIf="getArray().length !=0">
+    <ng-container *ngFor="let step of getArray();index as i">
+        <div 
+        [style]="i+1 != current ? '': 'background-color: '+activeColor+' !important;'" 
+        [class]="'rounded-full py-2 w-10 h-10 text-black font-bold text-center z-50 relative ' + defaultBackground +' '+ defaultForeGround" >
+        <span class="absolute font-semibold text-xs top-11 flex left-0 text-red-600 w-36">{{i == current-1 ? labels[i] : ''}}</span> {{step}}</div>
+
+        <div [class]="'w-32 h-4  relative '  + defaultBackground "*ngIf="i < getArray().length-1">
+            <div [class]="'w-32 h-4  absolute right-1 ' + defaultBackground" ></div>
+            <div [class]="'w-32 h-4  absolute left-1 ' + defaultBackground " ></div>
+        </div>
+    </ng-container>
+</div>

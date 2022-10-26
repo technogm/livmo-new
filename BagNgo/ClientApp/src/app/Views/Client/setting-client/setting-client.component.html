@@ -1,0 +1,273 @@
+<div class="inline-flex overflow-hidden w-fit relative flex-col ml-80 ">
+    <span class=" mt-36 "></span>
+    <div class="rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 ">
+        <div class="image overflow-hidden ">
+            <img class="object-cover rounded-full h-36 w-36 " src={{photoLink}} alt="">
+            <!--{{photoLink}}-->
+        </div>
+        <span class="font-bold text-3xl leading-10 text-black-500 ">{{currentData.prenom}} {{currentData.nom}} /</span>
+        <!--{{name}}-->
+        <span class=" text-xl leading-10 text-black-500 ">Setting </span>
+    </div>
+</div>
+<div class="bg-white-100">
+    <div class="container mx-auto my-5 p-5">
+        <div class="md:flex no-wrap md:-mx-2 ">
+
+            <!-- Left Side -->
+            <div class="w-full md:w-5/12 md:mx-2 ">
+
+                <div class="my-4"></div>
+                <!-- Friends card -->
+                <div class="bg-white  ml-40">
+
+                    <div>
+                        <div class="my-4">
+                            <span class="font-bold text-xl leading-4 tracking-widest mb-3">Setting :</span>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='personal'}" (click)="OpenP()">Personal Information </a>
+                        </div>
+
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='connect'}" (click)="OpenC()">Connection & Security</a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='help'}" (click)="OpenH()">Help </a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='out'}" (click)="OpenL() " (click)="logout()">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Side -->
+            <ng-container *ngIf="isSelected == 'personal' ">
+                <div class="w-full md:w-8/12 h-full ml-16">
+
+                    <form [formGroup]="updateForm">
+                        <div class="flex flex-col mt-6  items-start w-fit">
+                            <div class=" px-4 py-1 flex items-center gap-4 ">
+                                <div class="image overflow-hidden ">
+                                    <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'"
+                                        alt="" class="w-36 h-36 rounded-full">
+                                </div>
+                                <div class=" p-8 z-10">
+                                    <button type="file" class="primary-button  " id="bouton"
+                                        (click)="clickFakeUpload('UploadProfile');changeProfilePic()"> change
+                                        profile
+                                        picture </button>
+                                    <input type="file" class="opacity-0 pointer-events-none absolute"
+                                        id="UploadProfile" (change)="uploadedFile($event,'profile')" />
+
+                                </div>
+
+                                <div class=" z-10">
+                                    <button class="check-button" (click)="UpdateProfilePic()"> Update
+                                    </button>
+                                </div>
+                            </div>
+                            <span class=" mt-4 mb-4 font-bold text-2xl leading-10 pl-40"> Change your informations</span>
+                            <div class="grid grid-cols-2 gap-x-32 gap-y-10 mt-4  w-full">
+                                <div>
+                                    <span class="font-semibold text-base leading-5 "> First name :</span>
+                                    <div
+                                        class=" rounded-xl bg-white px-8 h-12 border-2 shadow-md flex items-center  w-full">
+                                        <input type="text" formControlName="nom" name="nom"
+                                            [(ngModel)]="currentData.nom" class="outline-none w-full h-10">
+                
+                                    </div>
+                
+                                </div>
+                
+                                <div>
+                                    <span class="font-semibold text-base leading-5 "> Last name :</span>
+                
+                                    <div
+                                        class=" rounded-xl bg-white px-8 h-12   border-2 shadow-md flex items-center w-full ">
+                                        <input type="text " formControlName="prenom" name="prenom"
+                                            [(ngModel)]="currentData.prenom"
+                                            class="form-control outline-none  h-10">
+                                        <!--[(ngModel)]="currentData.telephone"  formControlName="telephone"-->
+                                    </div>
+                                </div>
+                
+                
+                                <div>
+                                    <span class="font-semibold text-base leading-5 "> Date of birth :</span>
+                
+                
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-1">
+                                        <img src="assets/img/date.png " class="text-rose-500">
+                                        <p-calendar [(ngModel)]="currentData.dateOfBirth" class="w-full"
+                                            placeholder="{{currentData.dateOfBirth|date:'dd/MM/yyyy'}}"
+                                            [showButtonBar]="true" inputId="buttonbar" formControlName="dateOfBirth"
+                                            [readonlyInput]="true"></p-calendar>
+                                    </div>
+                
+                
+                                </div>
+                
+                
+                                <div>
+                                    <span class="font-semibold text-base leading-5 "> Country :</span>
+                                    <div
+                                        class=" rounded-xl bg-white px-8 h-12  border-2 shadow-md  flex items-center gap-4 w-full ">
+                                        <input type="text" formControlName="country"
+                                            [(ngModel)]="currentData.country" name="country"
+                                            class="form-control outline-none w-full h-10">
+                                        <!---->
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="font-semibold text-base leading-5 "> Phone Number:</span>
+                
+                                    <div
+                                        class=" rounded-xl bg-white px-8 h-12 py-3 mb-2 border-2 shadow-md flex items-center gap-4 w-full">
+                                        <input type="text" [(ngModel)]="currentData.telephone"
+                                            formControlName="telephone" name="telephone"
+                                            class="form-control outline-none w-full h-10">
+                                        <!--  [(ngModel)]="currentData.delegation" formControlName="delegation"-->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="grid grid-cols-2 gap-16 justify-center mt-4 max-w-4xl w-full">
+                                <div class=" flex flex-col items-start">
+                                    <div class=" p-8 z-10">
+                                        <button class="verif-button  border-x-blue-900" routerLinkActive="active"
+                                            [routerLink]="['/aboutClient']">RETURN TO PROFILE</button>
+                                    </div>
+
+
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <div class=" p-8 z-10">
+                                        <button class="primary-button" id="bouton" type="submit"
+                                            (click)="updatenewClient(updateForm)"> SAVE CHANGES</button>
+                                    </div>
+
+                                </div>
+
+                                <p-dialog [(visible)]="showAlert" [modal]="true" [style]="{ width: '30vw' }"
+                                    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+                                    <div class="p-6 text-center">
+
+                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Update
+                                            Successfully...</h3>
+                                        <button type="button" (click)="close()"
+                                            class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                                            id="bouton">
+                                            NEXT
+                                        </button>
+
+                                    </div>
+
+                                </p-dialog>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="isSelected == 'connect'">
+                <div class="w-full md:w-9/12 mx-2 h-full">
+
+                    <div class=" p-3 shadow-sm rounded-sm">
+                        <span class="font-bold text-2xl leading-10 pl-40"> Connection & Security</span>
+
+
+
+                    </div>
+
+                    <div class=" p-3 shadow-sm rounded-sm">
+
+
+
+
+                        <div class="flex flex-col mt-6 mb-14 items-center w-full">
+
+                            <div class="grid grid-cols-1 gap-4 justify-center  max-w-4xl w-full">
+                                <div class=" ">
+                                    <span class=" text-xl leading-10 "> Sessions :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-0 w-full border-2">
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full border-2">
+
+
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <span class=" text-xl leading-10 "> Change your password :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80">
+                                        <input type="password" placeholder="Current Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="New Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="Confirm new Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div class=" p-8 z-10">
+                                        <button class="primary-button" id="bouton"> SAVE CHANGES</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

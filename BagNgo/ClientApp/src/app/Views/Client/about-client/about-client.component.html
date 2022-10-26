@@ -1,0 +1,891 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<div class="inline-flex overflow-hidden w-fit relative flex-col ml-40">
+    <span class=" mt-36 "></span>
+    <div class=" px-4 py-1 grid grid-cols-2 gap-16 justify-center mt-4 max-w-4xl w-full ml-80">
+
+        <div class=" flex flex-col items-start">
+            <div class="image overflow-hidden  ">
+                <img class="object-cover rounded-full  h-36 w-36 " src={{photoLink}} alt="">
+                <!--{{photoLink}}-->
+
+            </div>
+        </div>
+
+        <div class=" flex flex-col items-start mt-6">
+            <span class="font-bold text-3xl leading-10 text-black-500 ">{{name}}</span>
+            <!--{{name}}-->
+            <span class=" text-2xl leading-10 text-black-500 "> {{role}}</span>
+            <!--{{role}} -->
+
+            <button class="previous-button3 " routerLinkActive="active" [routerLink]="['/setClient']">Setting</button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<div class="container mx-auto my-5 p-5">
+    <div class="md:flex no-wrap md:-mx-2 ">
+
+        <div class="flex-col flex-grow pb-4 md:pb-0 md:justify-end md:flex-row ml-32">
+
+            <span
+                class="flex flex-row cursor-pointer tracking-widest text-black-500   w-full px-14 py-2 mt-2 text-xl md:w-auto md:inline md:mt-0 md:ml-4 "
+                [ngClass]="{style:isSelected=='his'}" (click)="OpenH()">
+                History
+            </span>
+
+            <span
+                class="flex flex-row cursor-pointer tracking-widest text-black-500   w-full px-14 py-2 mt-2 text-xl md:w-auto md:inline md:mt-0 md:ml-4 "
+                [ngClass]="{style:isSelected=='fav'}" (click)="OpenF()">
+
+                Favourites
+            </span>
+
+
+
+            <span
+                class="flex flex-row cursor-pointer tracking-widest text-black-500   w-full px-14 py-2 mt-2 text-xl md:w-auto md:inline md:mt-0 md:ml-4 "
+                [ngClass]="{style:isSelected=='res'}" (click)="OpenR()">
+
+                Reservations
+            </span>
+
+
+            <span
+                class="flex flex-row cursor-pointer tracking-widest text-black-500   w-full px-14 py-2 mt-2 text-xl md:w-auto md:inline md:mt-0 md:ml-4 "
+                [ngClass]="{style:isSelected=='pro'}" (click)="OpenP()">
+
+                Profile
+            </span>
+
+
+            <span
+                class="flex flex-row cursor-pointer tracking-widest text-black-500   w-full px-14 py-2 mt-2 text-xl md:w-auto md:inline md:mt-0 md:ml-4 "
+                [ngClass]="{style:isSelected=='msg'}" (click)="OpenM()">
+
+                Messages (1)
+            </span>
+
+
+
+        </div>
+
+
+        <!-- ng container -->
+
+
+    </div>
+    <hr>
+
+    <ng-container *ngIf="isSelected == 'his'">
+
+       
+
+        <div class="bg-white p-3 shadow-sm rounded-sm">
+            <div class="flex flex-col mt-4 items-center w-full space-y-5">
+    
+                <div *ngFor="let item of experienceArray ;index as i">
+                    <div class="grid grid-cols-2 gap-4 mt-10 mb-3  ml-48">
+                        <div class=" flex flex-col items-start">
+                            <img src="assets/img/travel.png" class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black"
+                                alt="">
+                        </div>
+                        <div class=" flex flex-col items-start">
+                            <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2"> Experiences</span>
+                        </div>
+            
+                    </div>
+                    <div
+                        class="flex flex-col  gap-0 justify-between h-[335px]  w-[1124px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div class="flex flex-col p-8 leading-normal w-full space-y-5 ">
+                            <div class="flex justify-between items-center">
+                                <span class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
+                                    {{item.details.experienceTitle}} </span> <!-- {{item.title}}-->
+                                <div class="z-10 space-x-8">
+                                    <button class="primary-button2 " id="bouton"> {{item.details.theme}}</button> <!-- {{item.theme}} -->
+                                    <button class="primary-button2" id="bouton"> {{item.details.subTheme}}</button> <!--{{item.subTheme}}-->
+
+                                </div>
+                                <div class="z-10 ">
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">Description :</p>
+                                <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide	">
+                                    {{item.details.experienceDescription}}  </p> <!-- {{item.description}}-->
+                            </div>
+
+                            <div class="flex justify-between items-center mt-2">
+                                <div>
+                                    <span
+                                        class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.price}} / {{item.details.priceUnit}}</span>
+                                    <br><br> <!--{{item.price}}
+                                        {{item.priceUnit}} -->
+                                    <span
+                                        class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white "> {{item.details.location}}</span> <!--{{item.location}}-->
+
+                                </div>
+                                <div class="">
+                                    <span
+                                        class="mb-2 ml-16 text-base font-bold tracking-tight text-gray-900 dark:text-white "> {{item.details.startDate|
+                                            date: 'MMM d, y' }}
+                                            - {{item.details.endDate | date: 'MMM d, y' }}</span>
+                                    <br><br> <!--{{item.startDate}}
+                                        - {{item.endDate}}-->
+                                    <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"  (click)="goToDetails(item.details.experienceId)">
+                                    Details</a> <!--(click)="goToDetails(item.experienceId) "-->
+
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        <div class="max-w-xs">
+                            <img class="object-cover w-[401px] h-[333px] rounded-lg  " src={{item.img}}
+                                alt="">
+                            <!--src={{item.photos[0]}}-->
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+    </ng-container>
+    <ng-container *ngIf="isSelected == 'fav'">
+
+        <div class="grid grid-cols-2 gap-4 mt-20  ml-40">
+            <div class=" flex flex-col items-start">
+                <img src="assets/img/travel.png" class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black"
+                    alt="">
+            </div>
+            <div class=" flex flex-col items-start">
+                <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2"> Work in
+                    Progress..</span>
+            </div>
+
+        </div>
+
+
+
+        <hr>
+
+
+
+
+
+    </ng-container>
+    <ng-container *ngIf="isSelected == 'res'">
+        <div class="bg-white p-3 shadow-sm rounded-sm">
+
+            <div class="my-4" *ngFor="let item of experienceArray ;index as i">
+                <div class="grid grid-cols-2 gap-4 mt-10  ml-48">
+                    <div class=" flex flex-col items-start">
+                        <img src="assets/img/travel.png"
+                            class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black" alt="">
+                    </div>
+                    <div class=" flex flex-col items-start">
+                        <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2">
+                            Experiences</span>
+                    </div>
+                </div>
+                <div class="flex flex-col mt-4 items-center w-full">
+                    <!--all avec ngfor et ngif -->
+                    <div>
+                        <div>
+                            <div
+                                class="flex flex-col  gap-0 justify-between h-[351px]  w-[1124px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="flex flex-col p-8 leading-normal w-full space-y-5 ">
+                                    <div class="flex justify-between items-center">
+                                        <span
+                                            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.experienceTitle}}</span>
+                                        <div class="z-10 space-x-8">
+                                            <button class="primary-button2 " id="bouton"> {{item.details.theme}}
+                                            </button>
+                                            <button class="primary-button2" id="bouton">
+                                                {{item.details.subTheme}}</button>
+
+                                        </div>
+                                        <div class="z-10 ">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">
+                                            Description :
+                                        </p>
+                                        <p
+                                            class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide">
+                                            {{item.details.experienceDescription}}</p>
+                                    </div>
+
+                                    <div class="flex justify-between items-center mt-2">
+                                        <div>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.price}}
+                                                {{item.details.priceUnit}} </span>
+                                            <br><br>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.location}}</span>
+
+                                        </div>
+                                        <div class="">
+                                            <span
+                                                class="mb-2 ml-16 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.startDate|
+                                                date: 'MMM d, y' }}
+                                                - {{item.details.endDate | date: 'MMM d, y' }} </span>
+                                            <br><br>
+                                            <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                                (click)="goToDetails(item.details.experienceId)">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="max-w-xs">
+                                    <div class="bg-gray-100 shadow-xl object-cover w-[322px] h-[350px] rounded-lg ">
+                                        <div class="flex justify-start items-center">
+                                            <div class="photo-wrapper p-2">
+                                                <img class="w-20 h-20 rounded-full " src={{item.host.photoLink}}
+                                                    alt="John Doe">
+                                            </div>
+                                            <div class=" text-black-500  text-base font-semibold pr-2">
+                                                <p>{{item.host.legalName}}</p>
+                                                <a class="text-xs text-sky-400	 italic hover:underline hover:text-sky-400 font-medium"
+                                                    (click)="goToProfil(item.host.id)">Profile</a>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 space-y-4 mt-4">
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold ">{{item.startDate
+                                                    | date: 'MMMM d, y'}} - {{item.endDate | date: 'MMMM d, y'}}
+                                                </span>
+                                            </div>
+                                            <div class="text-left ">
+
+                                                <span class=" text-black-500  text-base font-semibold">{{item.seats}}
+                                                    Persons </span>
+                                            </div>
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold ">Price :
+                                                    {{item.price}}
+                                                    DT</span>
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Accepted'">
+                                                <p class="text-sm text-green-500 tracking-widest">Your request has been
+                                                    accepted
+                                                </p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Pending'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request is being
+                                                    processed </p>
+
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Paid'">
+                                                <p class="text-sm text-blue-700 tracking-widest	 ">Your payement is
+                                                    complete</p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Declined'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request has been
+                                                    declined</p>
+
+                                            </div>
+
+                                            <div class="flex justify-center pt-2">
+                                                <div class="z-10  ">
+                                                    <button class="bb1"
+                                                        (click)="DeleteExperienceReservation(item.experienceReservationId)"
+                                                        id="bouton"> DELETE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="height:4px ;width:50%;text-align:left;margin-left:0" class="mt-4">
+
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------   -->
+
+
+
+            <div class="my-4" *ngFor="let item of lodgingArray ;index as i">
+                <div class="grid grid-cols-2 gap-4 mt-4  ml-48">
+                    <div class=" flex flex-col items-start">
+                        <img src="assets/img/bed.png" class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black"
+                            alt="">
+                    </div>
+                    <div class=" flex flex-col items-start">
+                        <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2"> Lodging</span>
+                    </div>
+
+                </div>
+                <div class="flex flex-col mt-4 items-center w-full">
+                    <!--all avec ngfor et ngif -->
+
+                    <div>
+                        <div>
+                            <div
+                                class="flex flex-col  gap-0 justify-between h-[351px]  w-[1124px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="flex flex-col p-8 leading-normal w-full space-y-5 ">
+                                    <div class="flex justify-between items-center">
+                                        <span
+                                            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.lodging.lodgingName}}</span>
+                                        <div class="z-10 space-x-8">
+                                            <button class="primary-button2 " id="bouton"> {{item.lodging.lodgingType}}
+                                            </button>
+                                            <button class="primary-button2" id="bouton">
+                                                {{item.lodging.lodgingCategory}}</button>
+
+                                        </div>
+                                        <div class="z-10 ">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">
+                                            Description :
+                                        </p>
+                                        <p
+                                            class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide">
+                                            {{item.lodging.lodgingDescript}}</p>
+                                    </div>
+
+                                    <div class="flex justify-between items-center mt-2">
+                                        <div>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.lodging.pricePerNight}}
+                                                / Night
+                                            </span>
+                                            <br><br>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.lodging.lodgingAdress}}</span>
+
+                                        </div>
+                                        <div class="">
+
+                                            <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                                (click)="goToLodgingDetails(item.lodging.lodgingId)">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="max-w-xs">
+                                    <div class="bg-gray-100 shadow-xl object-cover w-[322px] h-[350px] rounded-lg ">
+                                        <div class="flex justify-start items-center">
+                                            <div class="photo-wrapper p-2">
+                                                <img class="w-20 h-20 rounded-full " src={{item.commLodg.photoLink}}
+                                                    alt="John Doe">
+                                            </div>
+                                            <div class=" text-black-500  text-base font-semibold pr-2">
+                                                <p>{{item.commLodg.legalName}}</p>
+                                                <a class="text-xs text-sky-400	 italic hover:underline hover:text-sky-400 font-medium"
+                                                    (click)="goToProfil(item.commLodg.id)">Profile</a>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 space-y-4 mt-4">
+                                            <div class="text-left ">
+                                                <span
+                                                    class="text-black-500  text-base font-semibold ">{{item.reservationLArrival
+                                                    | date: 'MMMM d, y'}} - {{item.reservationLDeparture | date: 'MMMMd, y'}}
+                                                </span>
+                                            </div>
+                                            <div class="text-left ">
+
+
+                                                <span class=" text-black-500  text-base font-semibold">{{item.seats}}
+                                                    Persons </span>
+                                            </div>
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold ">Price :
+                                                    {{item.priceLodging}}
+                                                    DT</span>
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Accepted'">
+                                                <p class="text-sm text-green-500 tracking-widest">Your request has been
+                                                    accepted
+                                                </p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Pending'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request is being
+                                                    processed </p>
+
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Paid'">
+                                                <p class="text-sm text-blue-700 tracking-widest	 ">Your payement is
+                                                    complete</p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Declined'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request has been
+                                                    declined</p>
+
+                                            </div>
+
+                                            <div class="flex justify-center pt-2">
+                                                <div class="z-10  ">
+                                                    <button class="bb1"
+                                                        (click)="DeleteLodgReservation(item.lodgingReservationId)"
+                                                        id="bouton"> DELETE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="height:4px ;width:50%;text-align:left;margin-left:0" class="mt-4">
+
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------   -->
+
+
+
+
+            <div class="my-4" *ngFor="let item of TransportArray ;index as i">
+                <div class="grid grid-cols-2 gap-4 mt-10  ml-48">
+                    <div class=" flex flex-col items-start">
+                        <img src="assets/img/car.png" class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black"
+                            alt="">
+                    </div>
+                    <div class=" flex flex-col items-start">
+                        <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2"> Transport</span>
+                    </div>
+
+                </div>
+                <div class="flex flex-col mt-4 items-center w-full">
+                    <!--all avec ngfor et ngif -->
+
+                    <div>
+                        <div>
+                            <div
+                                class="flex flex-col  gap-0 justify-between h-[351px]  w-[1124px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="flex flex-col p-8 leading-normal w-full space-y-5 ">
+                                    <div class="flex justify-between items-center">
+                                        <span
+                                            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.transport.vehuculeName}}</span>
+                                        <div class="z-10 ">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">
+                                            Description :
+                                        </p>
+                                        <p
+                                            class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide">
+                                            {{item.transport.vehiculeRules}}</p>
+                                    </div>
+
+                                    <div class="flex justify-between items-center mt-2">
+                                        <div>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.transport.pricePerDay}}
+                                                / Day
+                                            </span>
+                                            <br><br>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.transport.gouvernorate}}</span>
+
+                                        </div>
+                                        <div class="">
+
+                                            <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                                (click)="goToTransportDetails(item.transport.transportId)">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="max-w-xs">
+                                    <div class="bg-gray-100 shadow-xl object-cover w-[322px] h-[350px] rounded-lg ">
+                                        <div class="flex justify-start items-center">
+                                            <div class="photo-wrapper p-2">
+                                                <img class="w-20 h-20 rounded-full " src={{item.commTr.photoLink}}
+                                                    alt="John Doe">
+                                            </div>
+                                            <div class=" text-black-500  text-base font-semibold pr-2">
+                                                <p>{{item.commTr.legalName}}</p>
+                                                <a class="text-xs text-sky-400	 italic hover:underline hover:text-sky-400 font-medium"
+                                                    (click)="goToProfil(item.commTr.id)">Profile</a>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 space-y-4 mt-4">
+                                            <div class="text-left ">
+                                                <span
+                                                    class="text-black-500  text-base font-semibold ">{{item.startDateReservation
+                                                    | date: 'MMMM d, y'}} - {{item.endDateReservation | date: 'MMMM d, y'}}
+                                                </span>
+                                            </div>
+
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold "> Price :
+                                                    {{item.priceTransport}}
+                                                    DT</span>
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Accepted'">
+                                                <p class="text-sm text-green-500 tracking-widest">Your request has been
+                                                    accepted
+                                                </p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Pending'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request is being
+                                                    processed </p>
+
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Paid'">
+                                                <p class="text-sm text-blue-700 tracking-widest	 ">Your payement is
+                                                    complete</p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Declined'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request has been
+                                                    declined</p>
+
+                                            </div>
+
+                                            <div class="flex justify-center pt-2">
+                                                <div class="z-10  ">
+                                                    <button class="bb1"
+                                                        (click)="DeleteTransReservation(item.transportReservationId)"
+                                                        id="bouton"> DELETE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="height:4px ;width:50%;text-align:left;margin-left:0" class="mt-4">
+
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------   -->
+
+
+            <div class="my-4" *ngFor="let item of FoodArray ;index as i">
+                <div class="grid grid-cols-2 gap-4 mt-10  ml-48">
+                    <div class=" flex flex-col items-start">
+                        <img src="assets/img/plat.png" class=" flex-row  pt-0 text-2xl pl-1 text-rose-500 md:text-black"
+                            alt="">
+                    </div>
+                    <div class=" flex flex-col items-start">
+                        <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 mt-2"> Food</span>
+                    </div>
+
+                </div>
+                <div class="flex flex-col mt-4 items-center w-full">
+
+                    <div>
+                        <div>
+                            <div
+                                class="flex flex-col  gap-0 justify-between h-[351px]  w-[1124px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="flex flex-col p-8 leading-normal w-full space-y-5 ">
+                                    <div class="flex justify-between items-center">
+                                        <span
+                                            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.food.dishName}}</span>
+                                        <div class="z-10 ">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">
+                                            Description :
+                                        </p>
+                                        <p
+                                            class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide">
+                                            {{item.food.dishDescription}}</p>
+                                    </div>
+
+                                    <div class="flex justify-between items-center mt-2">
+                                        <div>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.food.foodPrice}}
+                                                / Dish
+                                            </span>
+                                            <br><br>
+                                            <span
+                                                class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.food.adress}}</span>
+
+                                        </div>
+                                        <div class="">
+
+                                            <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                                (click)="goToFoodDetails(item.food.foodServId)">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="max-w-xs">
+                                    <div class="bg-gray-100 shadow-xl object-cover w-[322px] h-[350px] rounded-lg ">
+                                        <div class="flex justify-start items-center">
+                                            <div class="photo-wrapper p-2">
+                                                <img class="w-20 h-20 rounded-full " src={{item.commF.photoLink}}
+                                                    alt="John Doe">
+                                            </div>
+                                            <div class=" text-black-500  text-base font-semibold pr-2">
+                                                <p>{{item.commF.legalName}}</p>
+                                                <a class="text-xs text-sky-400	 italic hover:underline hover:text-sky-400 font-medium"
+                                                    (click)="goToProfil(item.commF.id)">Profile</a>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 space-y-4 mt-4">
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold ">Arrival :
+                                                    {{item.arrival
+                                                    | date: 'MMMM d, y'}}
+                                                </span>
+                                            </div>
+                                            <div class="text-left ">
+
+
+                                                <span class=" text-black-500  text-base font-semibold">{{item.seats}}
+                                                    Persons </span>
+                                            </div>
+                                            <div class="text-left ">
+                                                <span class="text-black-500  text-base font-semibold ">Price :
+                                                    {{item.prceiFood}}
+                                                    DT</span>
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Accepted'">
+                                                <p class="text-sm text-green-500 tracking-widest">Your request has been
+                                                    accepted
+                                                </p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Pending'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request is being
+                                                    processed </p>
+
+                                            </div>
+
+                                            <div class="flex justify-center" *ngIf="item.status =='Paid'">
+                                                <p class="text-sm text-blue-700 tracking-widest	 ">Your payement is
+                                                    complete</p>
+
+                                            </div>
+                                            <div class="flex justify-center" *ngIf="item.status =='Declined'">
+                                                <p class="text-sm text-red-500 tracking-widest	">Your request has been
+                                                    declined</p>
+
+                                            </div>
+
+                                            <div class="flex justify-center pt-2">
+                                                <div class="z-10  ">
+                                                    <button class="bb1"
+                                                        (click)="DeleteFoodReservation(item.foodReservationId)"
+                                                        id="bouton"> DELETE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="height:4px ;width:50%;text-align:left;margin-left:0" class="mt-4">
+
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------   -->
+        </div>
+
+    </ng-container>
+    <ng-container *ngIf="isSelected == 'pro'">
+
+        <div class="md:flex no-wrap md:-mx-2 ">
+            <!-- Left Side -->
+            <div class="w-full md:w-3/12 md:mx-2">
+                <!-- Profile Card -->
+                <div class="bg-white p-16 ">
+                    <div class="image overflow-hidden">
+                        <img class="object-cover rounded-full h-36 w-36 mx-auto m-1 p-1 " src={{photoLink}} alt="">
+                    </div>
+                    <div class="flex flex-row justify-center">
+                        <div class="item">
+                            <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1  " src="assets/img/ver.png" alt="" />
+                            <span class="caption text-xs">Verified</span>
+                        </div>
+                        <div class="item">
+                            <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1  " src="assets/img/fav.png" alt="" />
+                            <span class="caption text-xs">Favourites</span>
+                        </div>
+                        <div class="item">
+                            <img class=" hover:cursor-pointer h-10 w-10 m-3 p-1 " src="assets/img/msg.png" alt="" />
+                            <span class="caption text-xs">Comments</span>
+                        </div>
+                    </div>
+
+                    <img class="my-4 mt-20" src="assets/img/Line.png" alt="" />
+                    <div class=" rounded-lg bg-white px-8 h-32 py-3 shadow-md flex items-center gap-0 w-full border-2">
+                        <ul>
+                            <li class="flex items-center my-4">
+                                <i class="fas fa-check-circle text-green-900"></i>
+                                <span class="ml-4">Identity</span>
+                            </li>
+                            <li class="flex items-center my-4 ">
+                                <i class="fas fa-check-circle text-green-900"></i>
+                                <span class="ml-4">Email</span>
+                            </li>
+                            <li class="flex items-center my-4">
+                                <i class="fas fa-check-circle text-green-900"></i>
+                                <span class="ml-4">Phone Number</span>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                    <div
+                        class=" rounded-lg bg-white px-3 h-28 py-3 shadow-md flex items-center gap-0 w-full border-2 mt-8">
+                        <span class="tracking-wide my-2 text-xs text-gray-500 hover:text-gray-600 ">
+                            <a class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
+                                href="#">Learn More:</a>
+                            on how confirming account information helps keep the LIVMO community safe.</span>
+
+
+                    </div>
+
+
+                    <div class="flex items-center justify-center mt-3">
+
+                        <button
+                            class="false  items-center justify-center gap-1 font-bold outline-none uppercase tracking-wider focus:outline-none focus:shadow-none transition-all duration-300 rounded-full w-10 h-10 p-0 grid place-items-center text-xs leading-normal bg-transparent text-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:bg-blue-50 active:bg-blue-100 undefined">
+                            <i class="fab fa-facebook-f undefined text-lg"></i>
+                        </button>
+
+                        <button
+                            class="false  items-center justify-center gap-1 font-bold outline-none uppercase tracking-wider focus:outline-none focus:shadow-none transition-all duration-300 rounded-full w-10 h-10 p-0 grid place-items-center text-xs leading-normal bg-transparent text-pink-500 hover:bg-pink-50 hover:text-pink-700 hover:bg-pink-50 active:bg-pink-100 undefined">
+                            <i class="fab fa-instagram undefined text-lg"></i>
+                        </button>
+
+                        <button
+                            class="false flex items-center justify-center gap-1 font-bold outline-none uppercase tracking-wider focus:outline-none focus:shadow-none transition-all duration-300 rounded-full w-10 h-10 p-0 grid place-items-center text-xs leading-normal bg-transparent text-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:bg-blue-50 active:bg-blue-100 undefined">
+                            <i class="fab fa-twitter undefined text-lg"></i>
+                        </button>
+
+                        <button
+                            class="false flex items-center justify-center gap-1 font-bold outline-none uppercase tracking-wider focus:outline-none focus:shadow-none transition-all duration-300 rounded-full w-10 h-10 p-0 grid place-items-center text-xs leading-normal bg-transparent text-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:bg-blue-50 active:bg-blue-100 undefined">
+                            <i class="fab fa-linkedin-in undefined text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Side -->
+            <div class="w-full md:w-9/12 mx-2">
+                <!-- Profile tab -->
+                <!-- About Section -->
+                <div class="bg-white p-16 shadow-sm rounded-sm">
+                    <div class="flex items-center my-4">
+
+                        <div class=" flex flex-col items-start">
+                            <span class="font-bold text-3xl leading-10 text-rose-500 tracking-widest"> {{name}}</span>
+                            <!--{{name}}-->
+                            <span class=" text-2xl leading-10 text-black-500 tracking-widest "> {{role}}</span>
+                            <!--{{role}} -->
+
+
+
+                            <span class=" text-base	 tracking-widest">Member since 2022 </span>
+                            <span class=" text-base	 tracking-widest">Lives in {{dataArray.country}}</span>
+                            <!--{{a.country}}-->
+
+                        </div>
+                    </div>
+
+                    <div class="mt-16 mb-6">
+                        <span class="font-bold  tracking-widest text-3xl leading-10 mt-2"> Lived Experiences</span>
+                        <!--avec ngif -->
+                    </div>
+                    <div class="my-4" *ngFor="let item of experienceArray ;index as i">
+                        <!--*ngFor="let item of dataArray ;index as i"-->
+                        <div
+                            class="flex flex-col  gap-0 justify-between h-72  w-[896px] bg-white rounded-lg border shadow-md md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <div class="flex flex-col p-8 leading-normal w-full space-y-4 ">
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.experienceTitle}}
+                                    </span>
+                                    <!--{{item.title}}-->
+                                    <div class="z-10 space-x-8">
+                                        <button class="primary-button2 " id="bouton"> {{item.details.theme}} </button>
+                                        <button class="primary-button2" id="bouton">
+                                            {{item.details.subTheme}}</button>
+                                    </div>
+                                    <div class="z-10 ">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400">Description :
+                                    </p>
+                                    <p
+                                        class="mb-3 font-normal text-base text-gray-700 dark:text-gray-400 tracking-wide	">
+                                        {{item.details.experienceDescription}} </p> <!-- {{item.description}}-->
+                                </div>
+
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span
+                                            class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.price}}
+                                            dt / {{item.details.priceUnit}}</span>
+                                        <!--{{item.price}}
+                                            {{item.priceUnit}} -->
+                                        <br><br>
+                                        <span
+                                            class="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white ">
+                                            {{item.details.location}}</span>
+                                        <!--{{item.location}}-->
+
+                                    </div>
+                                    <div class="">
+                                        <span
+                                            class="mb-2 ml-16 text-base font-bold tracking-tight text-gray-900 dark:text-white ">{{item.details.startDate|
+                                                date: 'MMM d, y' }}
+                                                - {{item.details.endDate | date: 'MMM d, y' }}</span>
+                                        <br><br>
+                                        <a class="text-base text-slate-600 italic hover:underline hover:text-black font-medium ml-16"
+                                        (click)="goToDetails(item.details.experienceId)">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="max-w-xs">
+                                <img class="object-cover w-[401px] h-72 rounded-lg  " src={{item.img}}
+                                    alt="">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--side end -->
+            </div>
+        </div>
+    </ng-container>
+</div>

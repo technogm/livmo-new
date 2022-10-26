@@ -1,0 +1,12 @@
+.style {
+    color: rgb(244 63 94);
+}
+.max-w-7xl {
+    margin-top: 5rem;
+}
+.fa-heart {
+    position: absolute;
+    z-index: 2;
+    color: rgb(231, 37, 118);
+    position: absolute;
+}

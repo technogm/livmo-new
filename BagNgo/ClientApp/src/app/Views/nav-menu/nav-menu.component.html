@@ -1,0 +1,86 @@
+<div [class]="scrollingTop || prevScrollPoint == 0 ? 'top-0' : '-top-20'"
+  class="antialiased  fixed w-full z-30 duration-500">
+  <div class="w-full text-gray-700 bg-white">
+    <div
+      class="flex flex-col max-w-screen-xl px-0 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+      <div class="flex flex-row items-right justify-between px-4 py-3">
+        <img src="assets/svgs/logo.svg" class=" w-56 h-20" alt="">
+        <button class="rounded-lg md:hidden focus:outline-none
+         focus:shadow-outline text-rose-500"
+          (click)="mobileNavopen = !mobileNavopen">
+          <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+            <path *ngIf="!mobileNavopen" fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+              clip-rule="evenodd"></path>
+            <path *ngIf="mobileNavopen" fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+      <nav [class]="mobileNavopen ? 'flex' : 'hidden md:flex'"
+        class="flex-col flex-grow pb-4 md:pb-0 md:justify-end md:flex-row">
+        <button  [routerLink]="['/homepage']"
+          class="flex flex-row cursor-pointer  text-rose-500  items-center w-full px-4 py-2 mt-2 text-xl font-bold text-left rounded-lg  md:w-auto md:inline md:mt-0 md:ml-4 ">
+          <span>Home</span>
+        </button>
+        <button  [routerLink]="['/HomeExperience']"
+          class="flex flex-row cursor-pointer text-rose-500 items-center  
+           w-full px-4 py-2 mt-2 text-xl font-bold
+           text-left rounded-lg  md:w-auto md:inline md:mt-0 md:ml-4 ">
+          <span>Experience</span>
+        </button>
+        <div class="relative mt-[2px]">
+          <button (click)="open = !open"
+            class="flex flex-row cursor-pointer text-rose-500  items-center w-full px-4 py-2 mt-2 text-xl font-bold text-left rounded-lg  md:w-auto md:inline md:mt-0 md:ml-4 ">
+            <span>Service</span>
+          </button>
+          <div [class]="open ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+            class="absolute -right-[35%]  rounded-2xl   w-full md:max-w-xs md:w-44 mt-2 origin-top-right z-40 shadow-2xl transition-all">
+            <div class="px-2 pt-2 pb-4 bg-white shadow-lg rounded-lg ">
+              <div class="grid grid-cols-1 gap-4 ">
+                <a class="flex flex-row items-center justify-center cursor-pointer  bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                [routerLink]="['/HomeLodging']">
+                  <div class="">
+                    <p class="font-bold text-center">Lodging</p>
+                  </div>
+                </a>
+                <a class="flex flex-row items-center justify-center cursor-pointer rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                [routerLink]="['/HomeRestaurant']">                
+                  <div class="">
+                    <p class="font-bold">Restaurant</p>
+                  </div>
+                </a>
+                <a class="flex flex-row items-center justify-center cursor-pointer rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                [routerLink]="['/HomeTransport']">
+                  
+                  <div class="">
+                    <p class="font-bold">Transport</p>
+                  </div>
+                </a>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <button (click)="rouuting()"
+        class="flex flex-row border-l border-rose-500  cursor-pointer text-rose-500    items-center w-full px-4 py-2 mt-2 text-xl font-bold text-left md:w-auto md:inline md:mt-0 md:ml-4 ">
+        <span >Private Space</span> 
+      </button>
+      <div class="flex flex-row ">
+        <img src="assets/img/Calendar.png" class="lex flex-row cursor-pointer pt-4 text-2xl pl-6 text-rose-500 md:text-black" alt="">
+        <img  src="assets/img/Vector.png" class="lex flex-row cursor-pointer pt-4 text-2xl pl-6 text-rose-500 md:text-black" alt=""  [routerLink]="['/Dashboard']">
+        <p-dialog [(visible)]="display" [modal]="true" [style]="{ width: '50vw' }"
+        [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+       <app-login-users></app-login-users>
+        </p-dialog>
+        <p-dialog [(visible)]="shouldAuth" [modal]="true" [style]="{ width: '50vw' }"
+        [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+       <app-login-users></app-login-users>
+        </p-dialog>
+       <button type="button" [disabled]="!conn"  class="" (click)="showDialog()"> <img [src]="photoLink ? photoLink : 'assets/img/Profile.png' "  class=" flex flex-row h-8 w-8 object-cover rounded-full ml-4 mt-4 cursor-pointer  text-2xl  text-rose-500 md:text-black" alt=""></button>  
+      </div>
+      </nav>
+    </div>
+  </div>
+</div>

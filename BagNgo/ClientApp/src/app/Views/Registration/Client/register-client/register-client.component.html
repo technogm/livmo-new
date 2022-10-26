@@ -1,0 +1,51 @@
+<div class="container mt-4-nb-4>">
+  <div class="login-container">
+    <form [formGroup]="userForm" (ngSubmit)= "register()">
+      <div class="form-group">
+        <label for="nom" class="form-label">First Name</label>
+        <input type="text" formControlName="nom" class="form-control" id="nom" placeholder="First Name">
+      </div>
+      <div class="form-group">
+          <label for="prenom" class="form-label">Last Name</label>
+          <input type="text" formControlName="prenom" class="form-control" id="prenom" placeholder="Last Name" >
+        </div>
+        <div class="form-group">
+          <label for="telephone" class="form-label">Telephone</label>
+          <input type="text" formControlName="telephone" class="form-control" id="telephone" placeholder="Telephone" >
+        </div>
+        <div class="form-group">
+          <label for="profilePicture" class="form-label">Profile Picture</label>
+          <input type="file" formControlName="profilePicture"class="form-control" id="profilePicture" placeholder="Profile Pic">
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth" class="form-label">Date of birth</label>
+          <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth" placeholder="Birthday">
+        </div>
+        <div class="form-group">
+          <label for="country"  class="form-label">country</label>
+          <input type="" formControlName="country" class="form-control" id="country" placeholder="country">
+        </div>
+        <div class="form-group">
+          <label for="adresse" class="form-label">Adress</label>
+          <input type="text" formControlName="adresse" class="form-control" id="adresse" placeholder="Adress">
+        </div>
+        <div class="form-group">
+          <label for="Email" class="form-label">email </label>
+          <input type="email"  formControlName="Email"class="form-control" id="Email" placeholder="email">
+            
+        </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+        </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+  </div>
+  <div class="btn-login mt-3">
+ <a href="/" class="btn btn-success">Login </a>
+  </div>
+</div>

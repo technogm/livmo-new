@@ -1,0 +1,21 @@
+<span class="flex flex-row text-3xl font-bold leading-10 text-red-500 items-start ml-3 ">EXPERIENCE PHOTOS</span>
+<div class="flex flex-col md:flex-row">
+    <div class="flex flex-col mt-4 mb-12 justify-start ">
+        <div class="grid grid-cols-3 gap-7 justify-center  ">
+            <div *ngFor="let pic of expPictures;index as i"  class="relative">
+                <img  [src]="pic ? pic.data : 'assets/img/addPhotos.png'"  class="mt-5" />
+                <button class="absolute p-2 right-0 top-0" (click)="deleteImg(i)">
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+            <input type="file" multiple class="opacity-0 pointer-events-none absolute flex flex-col 
+            rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center" id="UploadImages" 
+            (change)="uploadedFile($event,'Image')"/>
+            <button type="button"
+            (click)="clickFakeUpload('UploadImages')"
+                class=" flex flex-col rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center ">
+                <img src="assets/img/addPhotos.png" class="mt-5" />
+            </button>
+        </div>
+    </div>
+</div>

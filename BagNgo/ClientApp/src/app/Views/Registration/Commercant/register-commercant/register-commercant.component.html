@@ -1,0 +1,94 @@
+<div class="container mt-4-nb-4>">
+  <div class="login-container">
+    <form [formGroup]="userForm" (ngSubmit)= "register()">
+      <div class="form-group">
+        <label for="PersAContact" class="form-label">Personne a contacter</label>
+        <input type="text" formControlName="PersAContact" class="form-control" id="PersAContact" >
+      </div>
+      <div class="form-group">
+        <label for="TypeService" class="form-label">Type Service </label>
+        <input type="text" formControlName="TypeService" class="form-control" id="TypeService" >
+      </div>
+      <div class="form-group">
+        <label for="NumPersAcontacter" class="form-label">Numero personne a contacter</label>
+        <input type="text" formControlName="NumPersAcontacter" class="form-control" id="NumPersAcontacter" >
+      </div>
+      <div class="form-group">
+        <label for="Type" class="form-label">Cad</label>
+        <input type="file"  formControlName="Cad" class="form-control" id="Cad" >
+      </div>
+      <div class="form-group">
+        <label for="DomainActivite" class="form-label">Domain Activite</label>
+        <input type="text" formControlName="DomainActivite" class="form-control" id="DomainActivite" >
+      </div>
+        <div class="form-group">
+          <label for="Type" class="form-label">Type</label>
+          <input type="text" formControlName="Type" class="form-control" id="Type" >
+        </div>
+        <div class="form-group">
+          <label for="EffectFemme" class="form-label">Effet Femme</label>
+          <input type="text" formControlName="EffectFemme" class="form-control" id="EffectFemme"  >
+        </div>
+        <div class="form-group">
+          <label for="EffectHomme" class="form-label">Effet Homme</label>
+          <input type="text" formControlName="EffectHomme"class="form-control" id="EffectHomme" >
+        </div>
+        <div class="form-group">
+          <label for="SituationEntreprise" class="form-label">Situation Entreprise</label>
+          <input type="text" formControlName="SituationEntreprise" class="form-control" id="SituationEntreprise" >
+        </div>
+        <div class="form-group">
+          <label for="IdentifiantFiscale"  class="form-label">Identifiant Fiscale</label>
+          <input type="text" formControlName="IdentifiantFiscale" class="form-control" id="IdentifiantFiscale" >
+        </div>
+        <div class="form-group" >
+          <label for="Patente" class="form-label">Patente</label>
+          <input type="file"  formControlName="Patente" class="form-control" id="Patente" >
+        </div>
+        <div class="form-group">
+          <label for="FormeJuridique"  class="form-label">Forme Juridique</label>
+          <input type="text" formControlName="FormeJuridique" class="form-control" id="FormeJuridique" >
+        </div>
+        <div class="form-group">
+          <label for="NomJuridique"  class="form-label">Nom Juridique</label>
+          <input type="text" formControlName="NomJuridique" class="form-control" id="NomJuridique" >
+        </div>
+        <div class="form-group">
+          <label for="RNE"  class="form-label">RNE</label>
+          <input type="file"  formControlName="RNE" class="form-control" id="RNE" >
+        </div>
+        <div class="form-group">
+          <label for="CodePostale"  class="form-label">Code Postale</label>
+          <input type="text" formControlName="CodePostale" class="form-control" id="CodePostale" >
+        </div>
+        <div class="form-group">
+          <label for="NumCnss"  class="form-label">Num Cnss</label>
+          <input type="text" formControlName="NumCnss" class="form-control" id="NumCnss" >
+        </div>
+        <div class="form-group">
+          <label for="Country"  class="form-label">Country</label>
+          <input type="text" formControlName="Country" class="form-control" id="Country" >
+        </div>
+        <div class="form-group">
+          <label for="Adresse"  class="form-label">Adresse</label>
+          <input type="text" formControlName="Adresse" class="form-control" id="Adresse" >
+        </div>
+        <div class="form-group">
+          <label for="Email" class="form-label">Email </label>
+          <input type="email"  formControlName="Email"class="form-control" id="Email" placeholder="Email">
+        </div>
+      <div class="form-group">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" formControlName="Password" class="form-control" id="Password" placeholder="Password">
+      </div>
+      <div class="form-group">
+          <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" formControlName="ConfirmPassword" class="form-control" id="ConfirmPassword" placeholder="Confirm Password">
+        </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+  </div>
+  <div class="btn-login mt-3">
+ <a href="/" class="btn btn-success">Login </a>
+  </div>
+</div>

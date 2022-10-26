@@ -1,0 +1,3 @@
+<app-nav-menu *ngIf="!router.url.includes('not-found')"></app-nav-menu>
+<router-outlet></router-outlet>
+<app-footer *ngIf="!router.url.includes('not-found')"></app-footer>

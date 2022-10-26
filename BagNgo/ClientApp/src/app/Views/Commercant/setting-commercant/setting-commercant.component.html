@@ -1,0 +1,387 @@
+<div class="inline-flex overflow-hidden w-fit relative flex-col ml-40 ">
+    <span class=" mt-36 "></span>
+    <div class="rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 ">
+        <div class="image overflow-hidden ">
+            <img class="object-cover rounded-full h-36 w-36 " src={{photoLink}} alt="">
+            <!--{{photoLink}}-->
+        </div>
+        <span class="font-bold text-3xl leading-10 text-black-500 ">{{currentData.legalName}} /</span>
+        <!--{{name}}-->
+        <span class=" text-xl leading-10 text-black-500 ">Setting </span>
+    </div>
+</div>
+<div class="bg-white-100">
+    <div class="container mx-auto my-5 p-5">
+        <div class="md:flex no-wrap md:-mx-2 ">
+
+            <!-- Left Side -->
+            <div class="w-full md:w-3/12 md:mx-2 ">
+
+                <div class="my-4"></div>
+                <!-- Friends card -->
+                <div class="bg-white  ml-40">
+
+                    <div>
+                        <div class="my-4">
+                            <span class="font-bold text-xl leading-4 tracking-widest mb-3">Setting :</span>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='personal'}" (click)="OpenP()">Personal Information </a>
+                        </div>
+
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='connect'}" (click)="OpenC()">Connection & Security</a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='help'}" (click)="OpenH()">Help </a>
+                        </div>
+                        <div class="my-4">
+                            <a class=" cursor-pointer text-l leading-4 tracking-widest mb-3"
+                                [ngClass]="{style:isSelected=='out'}" (click)="OpenL() " (click)="logout()">Log Out</a>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Right Side -->
+
+
+
+            <ng-container *ngIf="isSelected == 'personal' ">
+                <div class="w-full md:w-9/12 h-full ml-16">
+
+                    <div class="bg-white p-3 shadow-sm rounded-sm">
+
+                        <span class="font-bold text-2xl leading-10 pl-40"> Change your informations</span>
+
+                        <form [formGroup]="updateForm">
+                            <!--[formGroup]="updateForm" (ngSubmit)="updatenewHost(updateForm)"-->
+                            <div class="flex flex-col mt-6  items-start w-fit">
+                                <div class=" px-4 py-1 flex items-center gap-4 ">
+                                    <div class="image overflow-hidden ">
+                                        <img class="object-cover rounded-full h-36 w-36 "
+                                            [src]="photoLink ? photoLink : 'assets/img/ImgDownload.png'" alt="">
+                                        <!---->
+
+                                    </div>
+                                    <div class=" p-8 z-10">
+                                        <button type="file" class="primary-button  " id="bouton"
+                                            (click)="clickFakeUpload('UploadProfile')"> change profil picture </button>
+                                        <input type="file" class="opacity-0 pointer-events-none absolute"
+                                            id="UploadProfile" (change)="uploadedFile($event,'profile')" />
+
+                                    </div>
+                                    <div class=" z-10">
+                                        <button class="previous-button  border-2 "> Delete </button>
+                                    </div>
+
+
+                                </div>
+                                <div class="grid grid-cols-2 gap-x-32 gap-y-16 mt-4  w-full">
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Company's Legal Name
+                                            :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 border-2 shadow-md flex items-center  w-full">
+                                            <input type="text" name="legalName" formControlName="legalName"
+                                                [(ngModel)]="currentData.legalName" class="outline-none w-full h-10">
+                                            <!-- [(ngModel)]="currentData.legalName"
+                                                        formControlName="legalName"-->
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Contact Person
+                                            :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12 border-2 shadow-md flex items-center  w-full">
+                                            <input type="text" name="contact" formControlName="contact"
+                                                [(ngModel)]="currentData.persAContact" class="outline-none w-full h-10">
+                                            <!-- [(ngModel)]="currentData.legalName"
+                                                        formControlName="legalName"-->
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+
+
+
+                                        <div
+                                            class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 h-10 w-full ">
+                                            <img src="assets/img/Phone.png " class="text-rose-500">
+                                            <p-inputMask type="text" mask="(216) 99 99 99 99"
+                                                [(ngModel)]="currentData.telephone" formControlName="telephone"
+                                                class="form-control outline-none  h-fit mr-5 tracking-widest w-40 ">
+                                            </p-inputMask>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Gouvernorate:</span>
+
+
+                                        <div
+                                            class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                            <p-dropdown placeholder="{{currentData.gouvernorate}}" class="flex w-full"
+                                                [options]="GouverType" [(ngModel)]="currentData.gouvernorate"
+                                                optionLabel="name" [maxlength]="4" formControlName="gouvernorate"
+                                                [filter]="true" filterBy="name">
+                                            </p-dropdown>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                                        <div
+                                            class=" rounded-xl bg-white px-8 h-12  border-2 shadow-md  flex items-center gap-4 w-full ">
+                                            <input type="text" formControlName="adresse"
+                                                [(ngModel)]="currentData.adresse"
+                                                class="form-control outline-none w-full h-10">
+                                            <!--formControlName="adresse"  [(ngModel)]="currentData.adresse"-->
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> delegation:</span>
+
+
+
+
+                                        <div
+                                            class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                            <p-dropdown placeholder="{{currentData.delegation}}" class="flex w-full"
+                                                [options]="GouverType" [(ngModel)]="currentData.delegation"
+                                                optionLabel="name" [maxlength]="4" formControlName="delegation"
+                                                [filter]="true" filterBy="name">
+                                            </p-dropdown>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> ZIP Code :</span>
+                                        <div
+                                            class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                            <div class="field col-12 md:col-3 w-full">
+                                                <p-inputNumber [(ngModel)]="currentData.zipCode" mode="decimal"
+                                                    formControlName="zipCode" [showButtons]="true"
+                                                    inputId="minmax-buttons" [min]="1" [max]="10000">
+                                                </p-inputNumber>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                    </div>
+
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number
+                                            :</span>
+                                        <div
+                                            class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                            <div class="field col-12 md:col-3 w-full">
+
+                                                <p-inputMask type="text" mask="999-999-999"
+                                                    [(ngModel)]="currentData.numCnss" type="text"
+                                                    formControlName="numCnss" class="outline-none w-full h-8">
+                                                </p-inputMask>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Tax Registration Number :
+                                            :</span>
+                                        <div
+                                            class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                            <div class="field col-12 md:col-3 w-full">
+
+                                                <p-inputMask type="text" mask="999-999-999"
+                                                    [(ngModel)]="currentData.taxNum" type="text"
+                                                    formControlName="taxNum" class="outline-none w-full h-8">
+                                                </p-inputMask>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> Female Workfoce :</span>
+                                        <div
+                                            class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                            <div class="field col-12 md:col-3 w-full">
+                                                <p-inputNumber [(ngModel)]="currentData.femaleWorkforce" mode="decimal"
+                                                    formControlName="femaleWorkforce" [showButtons]="true"
+                                                    inputId="minmax-buttons" [min]="1" [max]="10000">
+                                                </p-inputNumber>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <span class="font-semibold text-base leading-5 "> male Workfoce :</span>
+                                        <div
+                                            class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                            <div class="field col-12 md:col-3 w-full">
+                                                <p-inputNumber [(ngModel)]="currentData.maleWorkforce" mode="decimal"
+                                                    formControlName="maleWorkforce" [showButtons]="true"
+                                                    inputId="minmax-buttons" [min]="1" [max]="10000">
+                                                </p-inputNumber>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+                                <div class="grid grid-cols-2 gap-16 justify-center mt-4 max-w-4xl w-full">
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="verif-button  border-x-blue-900" routerLinkActive="active"
+                                                [routerLink]="['/AboutClient']">RETURN TO PROFIL</button>
+                                        </div>
+
+
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <div class=" p-8 z-10">
+                                            <button class="primary-button" id="bouton" type="submit"
+                                                (click)="updatenewHost(updateForm)"> SAVE CHANGES</button>
+                                        </div>
+
+                                    </div>
+
+                                    <p-dialog [(visible)]="showAlert" [modal]="true" [style]="{ width: '30vw' }"
+                                        [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+                                        <div class="p-6 text-center">
+
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                "successfully updated"</h3>
+
+
+                                        </div>
+
+                                    </p-dialog>
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="isSelected == 'connect'">
+                <div class="w-full md:w-9/12 mx-2 h-full">
+
+                    <div class=" p-3 shadow-sm rounded-sm">
+                        <span class="font-bold text-2xl leading-10 pl-40"> Connection & Security</span>
+
+
+
+                    </div>
+
+                    <div class=" p-3 shadow-sm rounded-sm">
+
+
+
+
+                        <div class="flex flex-col mt-6 mb-14 items-center w-full">
+
+                            <div class="grid grid-cols-1 gap-4 justify-center  max-w-4xl w-full">
+                                <div class=" ">
+                                    <span class=" text-xl leading-10 "> Sessions :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-0 w-full border-2">
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full border-2">
+
+
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <span class=" text-xl leading-10 "> Change your password :</span>
+                                    <hr style="width:30%;text-align:left;margin-left:0;">
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80">
+                                        <input type="password" placeholder="Current Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="New Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div
+                                        class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-80 ">
+                                        <input type="password" placeholder="Confirm new Password"
+                                            class="form-control outline-none w-80 ">
+                                    </div>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <div class=" p-8 z-10">
+                                        <button class="primary-button" id="bouton"> SAVE CHANGES</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

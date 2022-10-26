@@ -1,0 +1,26 @@
+.bg-AddExperience {
+    background-image: url('../../../../assets/img/createxp.png');
+    height: calc(100vh - 80px);
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    background-size: cover;
+    background-position: bottom;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.bg-AddDish {
+    background-image: url('../../../../assets/img/AddDish.png');
+    height: calc(100vh - 80px);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-size: cover;
+    background-position: bottom;
+}

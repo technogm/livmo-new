@@ -1,0 +1,624 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<div class="container mx-auto my-5 p-5">
+
+    <div class="mt-32  ml-72">
+        <span class="font-bold text-rose-500 tracking-widest text-2xl leading-10 ">
+            {{experience.experienceTitle}}</span>
+    </div>
+    <div class="py-4 px-20 ">
+        <p-carousel [value]="themes" [autoplayInterval]="6000" [circular]="true" [numVisible]="1" [numScroll]="1">
+
+            <ng-template let-theme pTemplate="item">
+                <div [style]="'background-image:url('+ theme.image +')'"
+                    class="mx-10 rounded-xl flex h-[600px] w-[1000px] items-center justify-center bg-black p-4 text-white text-3xl font-bold bg-cover ml-32">
+
+                </div>
+            </ng-template>
+        </p-carousel>
+        <div class="grid grid-cols-2 gap-4 ">
+            <div
+                class="justify-center rounded-lg bg-white px-3 h-16 py-3 shadow-md flex items-center gap-0 w-72 border-2  ml-40">
+
+
+                <span class="  font-bold text-xl text-black-500 ml-1">Theme: {{experience.theme}}</span>
+            </div>
+
+            <div
+                class="justify-center rounded-lg bg-white px-3 h-16 py-3 shadow-md flex items-center gap-0 w-72 border-2  ">
+                <span class="  font-bold text-xl text-black-500 ml-1">Sub-Theme:{{experience.subTheme}}</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="md:flex no-wrap md:-mx-2 ">
+        <!-- Left Side -->
+        <div class="w-full md:w-9/12 md:mx-2 space-y-4">
+            <div
+                class="relative flex flex-col rounded-lg bg-white p-6 h-[240px] ml-16 shadow-md  gap-0 w-[780px] border-2 my-10 space-y-4">
+                <span class="font-bold text-2xl  tracking-widest">About the plan </span>
+                <span class="tracking-wide  text-lg	 text-black-500 "> {{experience.experienceDescription}}
+                </span>
+                <div class="absolute bottom-2 left-6 ">
+                    <a class="text-sky-400	 italic hover:underline hover:text-sky-400 font-medium" href="#">Read
+                        more</a>
+                </div>
+            </div>
+            <div
+                class=" flex flex-col rounded-lg bg-white p-6 h-[240px] ml-16 shadow-md  relative gap-0 w-[780px] border-2 my-10 space-y-4">
+                <span class="font-bold text-2xl  tracking-widest">About the host </span>
+                <span class="tracking-wide  text-lg	 text-black-500 ">
+                    Hello Everyone, 
+                    My Name is {{namehost}} and I live in {{countryhost}} .
+                    I am actually hosting some interresting experiences that you can check them below.
+                    If you are interrested in one of them, you can easily reserve your place.<br>
+                    Best regards. 
+                </span>
+
+                <div class="absolute bottom-2 left-6 ">
+                    <a class=" cursor-pointer text-sky-400	 italic hover:underline hover:text-sky-400 font-medium"
+                        (click)="goToProfil(experience.hostId)">Read more</a>
+                </div>
+            </div>
+            <div
+                class=" relative flex flex-col rounded-lg bg-white  h-[240px] ml-16 p-6 shadow-md  gap-0 w-[780px] border-2 my-10 space-y-4">
+                <span class="font-bold text-2xl  tracking-widest">Rules </span>
+                <span class="tracking-wide  text-lg	 text-black-500 ">
+                    {{experience.otherCritics}}
+                </span>
+                <div class="absolute bottom-2 left-6 ">
+                    <a class=" text-sky-400	 italic hover:underline hover:text-sky-400 font-medium" href="#">Read
+                        more</a>
+                </div>
+            </div>
+            <div class="mt-4 ml-16">
+                <span class="font-bold text-2xl  tracking-widest">Included:</span>
+                <div class="grid grid-cols-4 gap-4">
+                    <div *ngIf="experience.foodExist"
+                        class="justify-center rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center w-44 border-2 mt-8">
+
+
+                        <span class="  font-bold text-xl text-black-500 ">food</span>
+                    </div>
+
+                    <div *ngIf="experience.transportExist"
+                        class="justify-center rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center  w-44 border-2 mt-8  ">
+                        <span class="  font-bold text-xl text-black-500 ">Transport</span>
+                    </div>
+                    <div *ngIf="experience.lodgingExist"
+                        class="justify-center rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center w-44 border-2 mt-8  ">
+                        <span class="  font-bold text-xl text-black-500 ">Lodging</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="experience.datType=='Specific Date'" class="w-full md:w-4/12 mx-2 h-full">
+            <!--specificdate-->
+            <div class=" rounded-lg bg-white shadow max-w-md mx-auto mt-8 mr-4">
+                <header class="  p-4 gradient rounded-lg">
+                    <h3 class="text-center text-white  text-lg font-bold">{{experience.price}} .DT / {{experience.priceUnit}}
+                        </h3>
+                    <p class="text-center  text-sm text-white ">{{experience.startDate|date:'longDate'}} -
+                        {{experience.endDate|date:'longDate'}}</p>
+                </header>
+
+                <section class="p-4">
+
+                    <div class="ml-8 rounded-lg bg-white p-2 h-12 shadow-md flex items-center gap-0  border-2 w-64">
+
+                        <div class="grid grid-cols-2 gap-x-0 ">
+
+                            <img src="assets/img/PeopleSearch.png" class="text-xl  text-rose-500" alt="">
+
+                            <div class="rounded-lg bg-white w-52 h-9">
+                                <div class>
+                                    <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons" class="ml-4" 
+                                        suffix=" Client" [(ngModel)]="num" [min]="1" [max]="experience.spots">
+
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class="font-bold  tracking-widest text-l leading-10  ml-4">Details</span>
+                    <div class="ml-4 mt-2 bg-white h-32 shadow-md  w-auto rounded-lg p-4">
+                        <div class="flex justify-start items-center ml-4 -mt-3">
+                            <div class="photo-wrapper p-2 mb-5">
+                                <img class="w-20 h-20 rounded-lg " src={{fruits[0]}}>
+                            </div>
+                            <div class="text-black-500  text-sm font-semibold ml-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class=" flex flex-col items-start">
+                                        <img src="assets/img/WhenSearch.png"
+                                            class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black"
+                                            alt="">
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <span class="font-bold  tracking-widest text-l leading-10 ">
+                                            {{experience.startDate |date: 'MMM d'}}, {{experience.endDate | date: 'MMM d'}}</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class=" flex flex-col items-start">
+                                        <img src="assets/img/PeopleSearch.png"
+                                            class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black"
+                                            alt="">
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <span class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                            clients</span>
+                                    </div>
+
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class=" flex flex-col items-start">
+                                        <i class="fas fa-money-check fa-lg mt-3"></i>
+                                        <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                                    </div>
+                                    <div class=" flex flex-col items-start">
+                                        <span class="font-bold  tracking-widest text-l leading-10 "> Price
+                                            :{{experience.price*num}}.Dt </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <footer class="justify-center gradient p-2 rounded-lg" *ngIf="Bookme == false">
+                    <button (click)="bookNow()" (click)="showDialog()" 
+                        class="text-center uppercase font-bold text-l text-white hover:underline ml-40 ">BOOK NOW
+                        !</button>
+                    <p-dialog [(visible)]="display" [modal]="true" [style]="{ width: '40vw' }" [baseZIndex]="10000"
+                        [draggable]="false" [resizable]="false">
+                        <p class="text-center font-bold text-2xl m-4  tracking-widest">Do you want to confirm
+                            your reservation? </p>
+
+                        <div class="flex justify-start items-center ml-4 -mt-3">
+                            <div class="photo-wrapper p-2 mb-5">
+                                <img class="w-52 h-40 rounded-lg " src={{fruits[0]}} alt="John Doe">
+                            </div>
+                            <div class="text-black-500  text-sm font-semibold ml-4">
+
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 ">
+                                        {{experience.experienceTitle}}</span>
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> {{experience.location}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-black-500  text-sm font-semibold ml-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <img src="assets/img/WhenSearch.png"
+                                        class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black" alt="">
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> {{experience.startDate
+                                        | date: 'MMM d, y'}}, {{experience.endDate | date: 'MMM d, y'}}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <img src="assets/img/PeopleSearch.png"
+                                        class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black" alt="">
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span *ngIf="num > 1" class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                        clients</span>
+                                    <span *ngIf="num == 1" class="font-bold  tracking-widest text-l leading-10 ">
+                                        {{num}} client</span>
+                                </div>
+
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <i class="fas fa-money-check fa-lg mt-3"></i>
+                                    <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> Price
+                                        :{{totalPrice}} .Dt/ {{experience.priceUnit}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="file" class="primary-button m-8 justify-center ml-32 " id="bouton"> COMPLETE YOUR
+                            RESERVATION</button>
+
+                    </p-dialog>
+
+                </footer>
+            </div>
+        </div>
+        <div *ngIf="experience.datType=='Open Date'" class="w-full md:w-4/12 mx-2 h-full">
+            <div class=" rounded-lg bg-white shadow max-w-md mx-auto mt-8 mr-4">
+                <header class="  p-4 gradient rounded-lg">
+                    <h3 class="text-center text-white  text-lg font-bold">{{experience.price}} {{experience.priceUnit}}
+                        / Person</h3>
+                </header>
+                <form [formGroup]="reserveForm">
+
+                    <section class="p-4">
+                        <div class=" mt-2">
+
+                            <div
+                                class="ml-16 rounded-lg bg-white p-4 h-12 w-64 py-1 shadow-md flex border-2 items-center gap-1">
+
+                                <img src="assets/img/date.png " class="text-rose-500">
+                                <span class=" tracking-widest text-l leading-10  ml-4">Arrival</span>
+
+                                <p-calendar [(ngModel)]="dateArrive" name="dateArrive" class="w-full"
+                                    [showButtonBar]="true" inputId="buttonbar" formControlName="dateArrive">
+                                </p-calendar>
+                            </div>
+                            <!-- {{dateArrive | date:'yyyy-MM-dd'}}-->
+                        </div>
+
+                        <div
+                            class="ml-16 rounded-lg bg-white p-2 h-12 m-2 shadow-md flex items-center gap-0 w-64 border-2">
+
+                            <div class="grid grid-cols-3 gap-x-0 justify-between">
+
+
+                                <img src="assets/img/PeopleSearch.png" class="text-xl  text-rose-500" alt="">
+
+                                <div class="rounded-lg bg-white w-32  h-9">
+                                    <div class="field md:col-3  mr-[-30px] ">
+                                        <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons"
+                                            suffix=" Client" formControlName="numClient" name="num" [(ngModel)]="num"
+                                            [min]="1" [max]="experience.spots">
+
+                                        </p-inputNumber>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <span class="font-bold  tracking-widest text-l leading-10  ml-4">Details</span>
+                        <div class="ml-4 mt-2 bg-white h-32   w-96 shadow-xl rounded-lg p-4">
+                            <div class="flex justify-start items-center ml-4 -mt-3">
+                                <div class="photo-wrapper p-2 mb-5">
+                                    <img class="w-20 h-20 rounded-lg " src={{fruits[0]}} alt="John Doe">
+                                </div>
+                                <div class="text-black-500  text-sm font-semibold ml-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class=" flex flex-col items-start">
+                                            <img src="assets/img/WhenSearch.png"
+                                                class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black"
+                                                alt="">
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span class="font-bold  tracking-widest text-l leading-10 "> {{dateArrive |
+                                                date: 'MMM d, y'}}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class=" flex flex-col items-start">
+                                            <img src="assets/img/PeopleSearch.png"
+                                                class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black"
+                                                alt="">
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span *ngIf="num > 1" class="font-bold  tracking-widest text-l leading-10 ">
+                                                {{num}} clients</span>
+                                            <span *ngIf="num == 1"
+                                                class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                                client</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class=" flex flex-col items-start">
+                                            <i class="fas fa-money-check fa-lg mt-3"></i>
+                                            <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span class="font-bold  tracking-widest text-l leading-10 "> Price
+                                                :{{experience.price*num}} .Dt/ {{experience.priceUnit}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </form>
+                <footer class=" justify-center gradient p-2 rounded-lg" *ngIf="Bookme == false">
+                    <button (click)="bookNow()"
+                        class=" uppercase font-bold text-l text-white hover:underline ml-40 ">BOOK NOW !</button>
+                    <p-dialog [(visible)]="display" [modal]="true" [style]="{ width: '40vw' }" [baseZIndex]="10000"
+                        [draggable]="false" [resizable]="false">
+                        <p class="text-center font-bold text-2xl m-4  tracking-widest">Do you want to confirm
+                            your reservation? </p>
+
+                        <div class="flex justify-start items-center ml-4 -mt-3">
+                            <div class="photo-wrapper p-2 mb-5">
+                                <img class="w-52 h-40 rounded-lg " src={{fruits[0]}} alt="John Doe">
+                            </div>
+                            <div class="text-black-500  text-sm font-semibold ml-4">
+
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 ">
+                                        {{experience.experienceTitle}}</span>
+                                </div>
+
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> {{experience.location}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-black-500  text-sm font-semibold ml-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <img src="assets/img/WhenSearch.png"
+                                        class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black" alt="">
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> {{dateArrive | date:
+                                        'MMM d, y'}}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <img src="assets/img/PeopleSearch.png"
+                                        class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black" alt="">
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span *ngIf="num > 1" class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                        clients</span>
+                                    <span *ngIf="num == 1" class="font-bold  tracking-widest text-l leading-10 ">
+                                        {{num}} client</span>
+                                </div>
+
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class=" flex flex-col items-start">
+                                    <i class="fas fa-money-check fa-lg mt-3"></i>
+                                    <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                                </div>
+                                <div class=" flex flex-col items-start">
+                                    <span class="font-bold  tracking-widest text-l leading-10 "> Total price
+                                        :{{totalPrice}} {{experience.priceUnit}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="file" class="primary-button m-8 justify-center ml-32 " id="bouton"> COMPLETE YOUR
+                            RESERVATION</button>
+                        <!--    -->
+                    </p-dialog>
+                    <p-dialog [(visible)]="shouldAuth" [modal]="true" [style]="{ width: '50vw' }" [baseZIndex]="10000"
+                        [draggable]="false" [resizable]="false">
+                        <ng-template pTemplate="header" class="items-center">
+                            <span class=" font-bold text-rose-500 tracking-widest text-xl	ml-48 "> You should
+                                authenticate first</span>
+
+                        </ng-template>
+                        <app-login-users></app-login-users>
+                    </p-dialog>
+                </footer>
+            </div>
+        </div>
+        <div *ngIf="experience.datType=='Interval Date'" class="w-full md:w-4/12 mx-2 h-full">
+            <!--intervalldate-->
+            <div class=" rounded-lg bg-white shadow max-w-md mx-auto mt-8 mr-4">
+                <form [formGroup]="reserveForm2">
+                    <header class="  p-4 gradient rounded-lg">
+                        <h3 class="text-center text-white  text-lg font-bold">{{experience.price}}
+                            {{experience.priceUnit}} / Person</h3>
+                    </header>
+
+                    <section class="p-4">
+
+                        <div class=" mt-2">
+
+                            <div
+                                class="ml-8 rounded-lg bg-white p-4 h-12 w-[335px] py-1 shadow-md flex border-2 items-center gap-1">
+
+                                <img src="assets/img/date.png " class="text-rose-500">
+                                <span class=" tracking-widest text-l leading-10  ml-4"> Date</span>
+
+                                <p-calendar (onClickOutside)="dur()" [(ngModel)]="dateIntervalle"
+                                    formControlName="dateIntervalle" name="dateIntervalle" selectionMode="range"
+                                    inputId="range"></p-calendar>
+                            </div>
+                        </div>
+                        <div class=" mt-2">
+
+                            <div
+                                class="ml-8 rounded-lg bg-white p-4 h-12 w-[335px] py-1 shadow-md flex border-2 items-center gap-1">
+
+                                <img src="assets/img/time.png " class="text-rose-500 ml-1">
+                                <span class=" tracking-widest text-l leading-10 ml-4">Time</span>
+
+                                <p-calendar name="starttime" formControlName="starttime" [(ngModel)]="starttime"
+                                    [timeOnly]="true" inputId="timeonly"></p-calendar>
+                                <span class=" tracking-widest text-l leading-10  ml-4">to</span>
+                                <p-calendar name="endtime" formControlName="endtime" [(ngModel)]="endtime"
+                                    [timeOnly]="true" inputId="timeonly"></p-calendar>
+                            </div>
+                        </div>
+
+                        <div
+                            class="ml-8 rounded-lg bg-white p-2 h-12 m-2 shadow-md flex items-center gap-0  border-2 w-[335px]">
+
+                            <div class="grid grid-cols-3 gap-x-0 justify-between">
+
+
+                                <img src="assets/img/PeopleSearch.png" class="text-xl ml-1 text-rose-500" alt="">
+
+                                <div class="rounded-lg bg-white w-32 h-9">
+                                    <div class="field md:col-3 mr-[-30px] ">
+                                        <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons"
+                                            suffix=" Client" formControlName="numClient" name="num" [(ngModel)]="num"
+                                            [min]="1" [max]="experience.spots">
+
+                                        </p-inputNumber>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <span class="font-bold  tracking-widest text-l leading-10  ml-4">Details</span>
+                        <div class="ml-4 mt-2 bg-white h-32 shadow-md  w-96  rounded-lg p-4">
+                            <div class="flex justify-start items-center ml-4 -mt-3">
+                                <div class="photo-wrapper p-2 mb-5">
+                                    <img class="w-20 h-20 rounded-lg " src={{fruits[0]}} alt="John Doe">
+                                </div>
+                                <div class="text-black-500  text-sm font-semibold ml-4 ">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class=" flex flex-col items-start ">
+                                            <img src="assets/img/WhenSearch.png"
+                                                class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black"
+                                                alt="">
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span class="font-bold  tracking-widest text-l leading-10 ">
+                                                {{dateIntervalle[0] | date: 'MMM d'}} -- {{dateIntervalle[1] | date:
+                                                'MMM d'}}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class=" flex flex-col items-start">
+                                            <img src="assets/img/PeopleSearch.png"
+                                                class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black"
+                                                alt="">
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span *ngIf="num > 2" class="font-bold  tracking-widest text-l leading-10 ">
+                                                {{num}} clients</span>
+                                            <span *ngIf="num == 1"
+                                                class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                                client</span>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4 mb-2">
+                                        <div class=" flex flex-col items-start">
+                                            <i class="fas fa-money-check fa-lg mt-3"></i>
+                                            <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                                        </div>
+                                        <div class=" flex flex-col items-start">
+                                            <span [(ngModel)]="num"
+                                                class="font-bold  tracking-widest text-l leading-10 "> Total price
+                                                :{{experience.price*num}} .Dt </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </form>
+                <p-dialog [(visible)]="display" [modal]="true" [style]="{ width: '40vw' }" [baseZIndex]="10000"
+                    [draggable]="false" [resizable]="false">
+                    <p class="text-center font-bold text-2xl m-4  tracking-widest">Do you want to confirm
+                        your reservation? </p>
+
+                    <div class="flex justify-start items-center ml-4 -mt-3">
+                        <div class="photo-wrapper p-2 mb-5">
+                            <img class="w-52 h-40 rounded-lg " src={{fruits[0]}} alt="John Doe">
+                        </div>
+                        <div class="text-black-500  text-sm font-semibold ml-4">
+
+                            <div class=" flex flex-col items-start">
+                                <span class="font-bold  tracking-widest text-l leading-10 ">
+                                    {{experience.experienceTitle}}</span>
+                            </div>
+                            <div class=" flex flex-col items-start">
+                                <span class="font-bold  tracking-widest text-l leading-10 "> {{experience.location}}
+                                </span>
+                            </div>
+
+                            <div class=" flex flex-col items-start">
+                                <span class="font-bold  tracking-widest text-l leading-10 "> {{starttime
+                                    |date:'shortTime' }} to {{endtime |date:'shortTime'}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black-500  text-sm font-semibold ml-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class=" flex flex-col items-start">
+                                <img src="assets/img/WhenSearch.png"
+                                    class="mt-2 flex-row h-6 w-6  pt-0 text-l text-rose-500 md:text-black" alt="">
+                            </div>
+                            <div class=" flex flex-col items-start">
+                                <span class="font-bold  tracking-widest text-l leading-10 "> {{dateIntervalle[0] | date:
+                                    'MMM d, y'}}, {{dateIntervalle[1] | date: 'MMM d, y'}}</span>
+                            </div>
+
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class=" flex flex-col items-start">
+                                <img src="assets/img/PeopleSearch.png"
+                                    class="mt-2 flex-row h-6 w-6  pt-0 text-l  text-rose-500 md:text-black" alt="">
+                            </div>
+                            <div class=" flex flex-col items-start">
+                                <span *ngIf="num > 1" class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                    clients</span>
+                                <span *ngIf="num == 1" class="font-bold  tracking-widest text-l leading-10 "> {{num}}
+                                    client</span>
+                            </div>
+
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class=" flex flex-col items-start">
+                                <i class="fas fa-money-check fa-lg mt-3"></i>
+                                <!--<i class="fa-solid fa-money-check-dollar"></i>-->
+                            </div>
+                            <div class=" flex flex-col items-start">
+                                <span class="font-bold  tracking-widest text-l leading-10 "> Total price :{{totalPrice*duration}}
+                                    {{experience.priceUnit}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="file" class="primary-button m-8 justify-center ml-32 " id="bouton"> COMPLETE YOUR
+                        RESERVATION</button>
+                </p-dialog>
+                <p-dialog [(visible)]="shouldAuth" [modal]="true" [style]="{ width: '50vw' }" [baseZIndex]="10000"
+                    [draggable]="false" [resizable]="false">
+                    <ng-template pTemplate="header" class="items-center">
+                        <span class=" ml-4  font-bold text-rose-500 tracking-widest text-xl	ml-48 "> You should
+                            authenticate first</span>
+
+                    </ng-template>
+                    <app-login-users></app-login-users>
+                </p-dialog>
+                <footer class="justify-center gradient p-2 rounded-lg">
+                    <button (click)="bookNow()"
+                        class="text-center uppercase font-bold text-l text-white hover:underline ml-40">BOOK NOW
+                        !</button>
+
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</div>

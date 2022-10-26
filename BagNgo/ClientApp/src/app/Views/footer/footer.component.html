@@ -1,0 +1,65 @@
+<div class="bg-gray-100 w-full bg-cover flex flex-col items-center p-8 gap-8 " *ngIf="showFooter">
+    <div class="flex flex-col md:flex-row gap-4 w-full justify-between max-w-screen-xl text-xl ">
+        <div class="w-2/5 flex flex-col md:flex-row gap-4">
+
+            <div class="grid grid-rows-3 grid-flow-col gap-4">
+                <img src="assets/svgs/logo.svg" alt="" class="w-[150px]">
+
+                <a class="text-rose-500 font-bold " [routerLink]="['/']"
+                    routerLinkActive="router-link-active">Become a Host</a>
+                <a class="text-rose-500 font-bold " [routerLink]="['/']">Become a Marchant</a>
+
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="flex flex-col gap-4">
+                <a class="text-rose-500 font-bold hover:bg-rose-50" [routerLink]="['/']">Home</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <a class="text-rose-500 font-bold hover:bg-rose-50 " [routerLink]="['/']">Experiences</a>
+            </div>
+            <div class="flex flex-col gap-4">
+
+                <a class="text-rose-500 font-bold hover:bg-rose-50 " [routerLink]="['/']">Services</a>
+                <a class="text-black font-bold hover:bg-gray-50" [routerLink]="['/']">Lodging</a>
+                <a class="text-black font-bold hover:bg-gray-50" [routerLink]="['/']">Transport</a>
+                <a class="text-black font-bold hover:bg-gray-50 " [routerLink]="['/']">Restaurant</a>
+            </div>
+            <div class="flex flex-col gap-4">
+
+                <a class="text-rose-500 font-bold hover:bg-rose-50 " [routerLink]="['/']">Private Spaces</a>
+            </div>
+            <div class="flex flex-col gap-4">
+
+                <a class="text-rose-500 font-bold hover:bg-rose-50" [routerLink]="['/']">Account</a>
+            </div>
+        </div>
+    </div>
+    <div class=" flex flex-col md:flex-row text-xl justify-end max-w-screen-xl w-full gap-16 mt-7 ">
+        <div class=" flex flex-row gap-4 mt-2">
+            <a class="text-black font-bold">Newsletter Sign Up</a>
+        </div>
+        <div class="flex flex-col gap-4">
+            <input class="px-8 py-3 outline-none text-black rounded-lg text-lg" placeholder="Your Email.." />
+        </div>
+        <div class=" flex flex-col gap-4 ">
+            <button class="primary-button">Submit</button>
+        </div>
+    </div>
+    <hr class="w-full border-t-2 border-gray-900 max-w-screen-xl">
+
+    <div class="flex flex-col md:flex-row w-full justify-between max-w-screen-xl text-xl">
+        <div class="flex  flex-col md:flex-row gap-8 ">
+            <a class="text-black font-bold hover:bg-gray-50 "> &copy;2022 LIVMO</a>
+            <a class="text-black font-bold hover:bg-gray-50 ">Privacy</a>
+            <a class="text-black font-bold hover:bg-gray-50 ">Terms and Conditions</a>
+            <a class="text-black font-bold hover:bg-gray-50 ">Sitemap</a>
+        </div>
+        <div class="flex gap-8 ">
+            <a class="text-black font-bold hover:bg-gray-50 ">2022 </a>
+            <a class="text-black font-bold hover:bg-gray-50 ">2022</a>
+            <a class="text-black font-bold hover:bg-gray-50 ">2022</a>
+            <a class="text-black font-bold hover:bg-gray-50 ">2022</a>
+        </div>
+    </div>
+</div>

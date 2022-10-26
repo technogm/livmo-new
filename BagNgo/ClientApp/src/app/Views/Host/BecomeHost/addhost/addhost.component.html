@@ -1,0 +1,570 @@
+<div class="inline-flex overflow-hidden w-full relative flex-col justify-center text-center ">
+    <div class="bg-AddExperience z-0"></div>
+    <span class="text-center mt-36 "></span>
+    <span class="font-bold text-4xl leading-10 text-red-500  ">Become a Host</span>
+    <span class="font-bold text-xs leading-4 tracking-widest mb-3">Hi! we will help you become a host. </span>
+    <app-stepper [current]="step" [length]="isselected == 'organisation' ? 4 : 3" [labels]="getlabels()"></app-stepper>
+    <div *ngIf="step == 1" class="flex flex-col mt-14 ">
+        <h1 class="font-bold text-2xl leading-7">What is a Host ?</h1>
+        <span class="font-bold text-xs leading-4 tracking-widest pt-3">Becoming a host allows you to create experiences
+        </span>
+        <span class="font-semibold text-base leading-5 text-center pt-5">Are you an individual or an organization?
+        </span>
+        <div class="flex gap-5 justify-center pt-2">
+            <div class="flex flex-col gap-2 ">
+                <span class="font-semibold text-base leading-5">Individual</span>
+                <input type="radio" name="groupname" class="accent-red-500 text-base ml-6 " value="individual" label=""
+                    [(ngModel)]="isselected" />
+            </div>
+            <div class="flex flex-col gap-2">
+                <span class="font-semibold text-base leading-5 ml-9">Organisation</span>
+                <input type="radio" name="groupname" class="accent-red-500  text-base ml-9" value="organisation"
+                    [(ngModel)]="isselected">
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="isselected == 'organisation'">
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form2Organisation" *ngIf="step == 2">
+                <div class="mt-10 justify-center max-w-3xl w-full mb-44 relative">
+                    <div class="grid grid-cols-3 gap-8 justify-center">
+                        <div class=" justify-center gap-12 mt-1 row-span-3">
+                            <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'" alt=""
+                                class="w-[150px] rounded-full" (click)="clickFakeUpload('UploadProfile')">
+                            <input type="file" class="opacity-0 pointer-events-none absolute" id="UploadProfile"
+                                (change)="uploadedImage($event,'profile')" />
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 "> Company Name :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 flex w-full">
+                                <input type="text" name="legalName" formControlName="legalName" pInputText
+                                    [pKeyFilter]="blockSpace" class="outline-none w-full h-8" required>
+                            </div>
+                            <div *ngIf="legalNameO.invalid
+                            && (legalNameO.dirty || legalNameO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameO.errors['required']">
+                                    Company Name is Required !</span>
+
+                            </div>
+                        </div>
+                        <div class=" flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Contact Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 flex w-full">
+                                <input type="text" formControlName="persAContact" class="outline-none w-full h-8"
+                                    pInputText [pKeyFilter]="blockSpace">
+                            </div>
+                            <div *ngIf="persAContactO.invalid && (persAContactO.dirty || persAContactO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactO.errors['required']">
+                                    Contact Person Name is Required !</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-2 w-full h-10 ">
+                                <img src="assets/img/Phone.png " class="text-rose-500">
+                                <p-inputMask type="text" mask="(216) 99 99 99 99" [(ngModel)]="PHONEMASK"
+                                    placeholder="(216) 99 99 99 99" formControlName="telephone"
+                                    class="form-control outline-none h-fit tracking-wider mr-5 w-44"> </p-inputMask>
+                            </div>
+                            <div *ngIf="telephoneO.invalid && (telephoneO.dirty || telephoneO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneO.errors['required']">
+                                    Oraganisation Number is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Email :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full h-10">
+                                <img src="assets/img/Email.png " class="text-rose-500">
+                                <input type="text" class="form-control outline-none w-full h-8" formControlName="email"
+                                    (keyup)="keyup2($event)">
+    
+                            </div>
+                            <div *ngIf="Mailexist ==true">
+                                <span class="font-semibold text-xs leading-5 text-rose-500">
+                                    Email already used !</span>
+                            </div>
+                            <div *ngIf="emailO.invalid
+                                && (emailO.dirty || emailO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailO.errors['required']">
+                                    Email is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailO.errors['pattern']">
+                                    Email is Invalid !</span>
+    
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Enter your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none h-8" formControlName="password">
+                            </div>
+                            <div *ngIf="passwordO.invalid
+                            && (passwordO.dirty || passwordO.touched)">
+                                <div *ngIf="passwordO.errors['required'] "
+                                    class="font-semibold text-xs leading-5 text-rose-500"> Password is required !</div>
+                                <div *ngIf="passwordO.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrg('lowercase')?'text-red-500':'text-green-600'">
+                                    At least one lowercase !</div>
+                                <div *ngIf="passwordO.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrg('upercase')? 'text-red-500':'text-green-600'">
+                                    At least one uppercase !
+                                </div>
+                                <div *ngIf="passwordO.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrg('num')? 'text-red-500':'text-green-600'">
+                                    At least one numeric !
+                                </div>
+                                <div *ngIf=" passwordO.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrg('num')? 'text-red-500':'text-green-600'">
+                                    Minimum 8 characters !
+                                </div>
+                                <div *ngIf="passwordO.errors && passwordO.value"
+                                    [class]="!passwordHaveOrg('special')? 'text-red-500':'text-green-600'"
+                                    class="font-semibold text-xs leading-5 ">
+                                    Atleast a special character !
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Confirm your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none  h-8"
+                                    formControlName="confirmPassword">
+                            </div>
+                            <div *ngIf="confirmPasswordO.value !== passwordO.value
+                            && (confirmPasswordO.dirty || confirmPasswordO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"> Mismatch Password !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 mt-2">
+                                <img src="assets/img/Tunisia.png " class="text-rose-500">
+                                <input type="text" class="outline-none h-8" formControlName="country" value="Tunisia"
+                                    readonly>
+                            </div>
+
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                <p-dropdown placeholder="Gouvernorate" class="outline-none flex h-8 w-full text-left"
+                                    [options]="GouverType" [(ngModel)]="SelectedGouver" optionLabel="name"
+                                    [maxlength]="4" formControlName="gouvernorate" [filter]="true" filterBy="name">
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="gouvernorateO.invalid
+                            && (gouvernorateO.dirty || gouvernorateO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="gouvernorateO.errors['required']">
+                                    Gouvernorate is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start w-full">
+                            <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 shadow-md mb-2 flex items-center gap-4 mt-2 w-full">
+                                <input type="text" formControlName="adresse"
+                                    class="form-control outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="adresseO.invalid
+                            && (adresseO.dirty || adresseO.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="adresseO.errors['required']">
+                                    Adress is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form [formGroup]="Form3Organisation" *ngIf="step == 3">
+            <div class="flex flex-col mt-14 mb-14 items-center w-full">
+                <div class="grid grid-cols-2 gap-8 justify-center mt-4 max-w-lg w-full">
+                    <div class=" flex flex-col items-start w-full">
+                        <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                            <p-inputMask type="text" mask="999-999-999" [(ngModel)]="CNSSMASK" placeholder="999-999-999"
+                                type="text" formControlName="numCnss" class="outline-none w-full h-8"></p-inputMask>
+                        </div>
+                        <div *ngIf="numCnssO.invalid && (numCnssO.dirty || numCnssO.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="numCnssO.errors['required']">
+                                CNSS Number is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start w-full">
+                        <span class="font-semibold text-base leading-5 "> Tax Registration Number :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                            <p-inputMask type="text" mask="999-999-999" [(ngModel)]="TAXMASK" placeholder="999-999-999"
+                                formControlName="TaxNumber" class="outline-none w-full h-8"></p-inputMask>
+                        </div>
+                        <div *ngIf="TaxNumberO.invalid && (TaxNumberO.dirty || TaxNumberO.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="TaxNumberO.errors['required']">
+                                CNSS Number is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start w-full ">
+                        <span class="font-semibold text-base leading-5 w-full "> Male Workforce :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                            <div class="field col-12 md:col-3 w-full ">
+                                <p-inputNumber [(ngModel)]="value20" mode="decimal" formControlName="MaleWorkforce"
+                                    [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000"
+                                    placeholder="xxx">
+                                </p-inputNumber>
+                            </div>
+
+                        </div>
+                        <div *ngIf="MaleWorkforceO.invalid && (MaleWorkforceO.dirty || MaleWorkforceO.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="MaleWorkforceO.errors['required']">
+                                Male Workforce number is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start w-full">
+                        <span class="font-semibold text-base leading-5 "> Female Workfoce :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md mb-2 flex items-center gap-4 w-full">
+                            <div class="field col-12 md:col-3 w-full">
+                                <p-inputNumber [(ngModel)]="value21" mode="decimal" formControlName="FemaleWorkforce"
+                                    [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000" placeholder="xxxx">
+                                </p-inputNumber>
+                            </div>
+
+                        </div>
+                        <div *ngIf="FemaleWorkforceO.invalid && (FemaleWorkforceO.dirty || FemaleWorkforceO.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="FemaleWorkforceO.errors['required']">
+                                Female Workforce Number is Required !</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="Form4Organisation" *ngIf="step == 4">
+            <div class="flex flex-col mt-14 mb-12 justify-center ">
+                <div class="grid grid-row-2 gap-4 justify-center ">
+                    <div class="items-start">
+                        <span class="font-semibold text-base leading-5 "> Add Copy of your licence : </span>
+                        <div class="rounded-lg bg-white shadow-md h-10 flex items-center gap-4 mt-2">
+                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                (click)="clickFakeUpload('UploadId')">FILE</div>
+                            <input type="file" class="opacity-0 pointer-events-none absolute w-full " id="UploadId"
+                                (change)="UploadLicenceCopy($event,'CopyIdFile')" />
+                            <input type="text" class="outline-none  rounded-md w-full" placeholder="File" readonly
+                                accept=".pdf" [(ngModel)]="CopyIdFile.name" formControlName="licenceCopy">
+                        </div>
+                        <div class="flex w-[10] leading-3 mt-1">
+                            <span> Supported files: pdf, jpeg, xls ...</span>
+                        </div>
+                        <div *ngIf="licenceCopyO.value == 'File'">
+                            <span class="font-semibold text-xs leading-5 text-rose-500">
+                                Your Licence is Required !</span>
+                        </div>
+                    </div>
+                    <div class="items-start">
+                        <span class="font-semibold text-base leading-5 items-start"> Add Copy of your RNE : </span>
+                        <div class="rounded-lg bg-white shadow-md flex  h-10 items-center gap-4 mt-2">
+                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                (click)="clickFakeUpload('UploadIdrneCopy')">FILE</div>
+                            <input type="file" class="opacity-0 pointer-events-none absolute w-full py-4"
+                                id="UploadIdrneCopy" (change)="uploadRNECopy($event,'CopyIdFile3')" />
+                            <input type="text" class="outline-none rounded-md w-full" placeholder="File" readonly
+                                accept=".pdf" [(ngModel)]="CopyIdFile3.name" formControlName="rneCopy">
+                        </div>
+                        <div class="flex w-[10] leading-3 mt-1">
+                            <span> Supported files: pdf, jpeg, xls ...</span>
+                        </div>
+                        <div *ngIf="rneCopyO.value == 'File'">
+                            <span class="font-semibold text-xs leading-5 text-rose-500">
+                                Your RNE is Required !</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+
+
+    <ng-container *ngIf="isselected == 'individual'">
+        <form [formGroup]="Form2Individual" *ngIf="step == 2">
+
+            <div class="flex flex-col mt-14 justify-center">
+                <div class="flex justify-center gap-12 mt-1">
+                    <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'" alt=""
+                        class="w-[150px] rounded-full" (click)="clickFakeUpload('UploadProfile')">
+                    <input type="file" class="opacity-0 pointer-events-none absolute" id="UploadProfile"
+                        (change)="uploadedImage($event,'profile')" />
+                </div>
+                <div class="flex flex-row justify-center gap-12 mt-4">
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Full Name :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                            <input type="text" class="outline-none  h-8" formControlName="legalName" pInputText
+                                [pKeyFilter]="blockSpace">
+                        </div>
+                        <div *ngIf="legalNameI.invalid
+                        && (legalNameI.dirty || legalNameI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="legalNameI.errors['required']">
+                                Host Name is Required !</span>
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="legalNameI.errors['pattern']">
+                                Only letters allowed !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full h-10 ">
+                            <img src="assets/img/Phone.png " class="text-rose-500">
+                            <p-inputMask type="text" mask="(216) 99 99 99 99" [(ngModel)]="PHONEMASK"
+                                placeholder="(216) 99 99 99 99" formControlName="telephone"
+                                class="form-control outline-none h-fit tracking-wider mr-5 w-44"> </p-inputMask>
+                        </div>
+                        <div *ngIf="telephoneI.invalid && (telephoneI.dirty || telephoneI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="telephoneI.errors['required']">
+                                Phone Number is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Email :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                            <img src="assets/img/Email.png " class="text-rose-500">
+                            <input type="text" class="form-control outline-none  h-8" formControlName="email"
+                                (keyup)="keyup($event)">
+
+                        </div>
+                        <div *ngIf="Mailexist ==true">
+                            <span class="font-semibold text-xs leading-5 text-rose-500">
+                                Email already used !</span>
+                        </div>
+                        <div *ngIf="emailI.invalid
+                            && (emailI.dirty || emailI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="emailI.errors['required']">
+                                Email is Required !</span>
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="emailI.errors['pattern']">
+                                Email is Invalid !</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row justify-center gap-12 mt-8">
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Enter your Password :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md mb-2 flex items-center gap-4">
+                            <img src="assets/img/pass.png " class="text-rose-500">
+                            <input type="password" class="form-control outline-none h-8" formControlName="password">
+                        </div>
+                        <div *ngIf="passwordI.invalid
+                        && (passwordI.dirty || passwordI.touched)">
+                            <div *ngIf="passwordI.errors['required'] "
+                                class="font-semibold text-xs leading-5 text-rose-500"> Password is required !</div>
+                            <div *ngIf="passwordI.value" class="font-semibold text-xs leading-5"
+                                [class]="!passwordHave('lowercase')?'text-red-500':'text-green-600'">
+                                At least one lowercase !</div>
+                            <div *ngIf="passwordI.value" class="font-semibold text-xs leading-5"
+                                [class]="!passwordHave('upercase')? 'text-red-500':'text-green-600'">
+                                At least one uppercase !
+                            </div>
+                            <div *ngIf="passwordI.value" class="font-semibold text-xs leading-5"
+                                [class]="!passwordHave('num')? 'text-red-500':'text-green-600'">
+                                At least one numeric !
+                            </div>
+                            <div *ngIf=" passwordI.value" class="font-semibold text-xs leading-5"
+                                [class]="!passwordHave('num')? 'text-red-500':'text-green-600'">
+                                Minimum 8 characters !
+                            </div>
+                            <div *ngIf="passwordI.errors && passwordI.value"
+                                [class]="!passwordHave('special')? 'text-red-500':'text-green-600'"
+                                class="font-semibold text-xs leading-5 ">
+                                Atleast a special character !
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Confirm your Password :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                            <img src="assets/img/pass.png " class="text-rose-500">
+                            <input type="password" class="form-control outline-none  h-8"
+                                formControlName="confirmPassword">
+                        </div>
+                        <div *ngIf="confirmPasswordI.value !== passwordI.value
+                        && (confirmPasswordI.dirty || confirmPasswordI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"> Mismatch Password !</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="Form3Individual" *ngIf="step == 3" class="flex mb-44">
+            <div class="flex flex-col mt-14  items-center w-full ">
+                <div class="grid grid-cols-3 gap-8 justify-center mt-4 max-w-4xl w-full mb-44">
+                    <div class=" flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Add Copy of your ID Card : </span>
+                        <div class="rounded-lg bg-white shadow-md h-10 flex items-center gap-4 mt-2">
+                            <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                (click)="clickFakeUpload('UploadId')">FILE</div>
+                            <input type="file" class="opacity-0 pointer-events-none absolute w-full " id="UploadId"
+                                (change)="uploadCINFile($event,'CopyIdFile2')" />
+                            <input type="text" class="outline-none  rounded-md w-full" placeholder="File" readonly
+                                [(ngModel)]="CopyIdFile2.name" formControlName="cinCopy">
+                        </div>
+                        <div class="flex w-[10] leading-3 mt-1">
+                            <span> Supported files: pdf, jpeg, xls ...</span>
+                        </div>
+                        <div *ngIf="cinCopyI.value == 'File'">
+                            <span class="font-semibold text-xs leading-5 text-rose-500">
+                                Your PDF CIN is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Country :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 h-10 w-full shadow-md flex items-center gap-4 mt-2">
+                            <img src="assets/img/Tunisia.png " class="text-rose-500">
+                            <input type="text" class="outline-none h-8" formControlName="country" value="Tunisia"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                            <p-dropdown placeholder="Gouvernorate" class="outline-none flex h-8 w-full text-left"
+                                [options]="GouverType" [(ngModel)]="SelectedGouver" optionLabel="name"
+                                formControlName="gouvernorate" [filter]="true" filterBy="name"></p-dropdown>
+                        </div>
+                        <div *ngIf="gouvernorateI.invalid
+                        && (gouvernorateI.dirty || gouvernorateI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="gouvernorateI.errors['required']">
+                                Gouvernorate is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Delegation :</span>
+                        <div class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                            <p-dropdown placeholder="Delegation" class="outline-none flex h-8 w-full text-left"
+                                [(ngModel)]="selectedCity3" [group]="true" [options]="groupedCities"
+                                formControlName="delegation" [filter]="true" filterBy="label">
+                                <ng-template let-group pTemplate="group">
+                                    <div class="p-d-flex p-ai-center">
+                                        <span>{{group.label}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div *ngIf="delegationI.invalid
+                        && (delegationI.dirty || delegationI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="delegationI.errors['required']">
+                                delegation is Required !</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-start">
+                        <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                        <div
+                            class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md mb-2 flex items-center gap-4 w-full mt-2 ">
+                            <input type="text" formControlName="adresse" class="form-control outline-none w-full h-8">
+                        </div>
+                        <div *ngIf="adresseI.invalid
+                        && (adresseI.dirty || adresseI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="adresseI.errors['required']">
+                                Adress is Required !</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start w-full">
+                        <span class="font-semibold text-base leading-5 "> ZIP Code :</span>
+                        <div class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full mt-2">
+                            <div class="field col-12 md:col-3 w-full">
+                                <p-inputNumber [(ngModel)]="value22" mode="decimal" formControlName="zipCode"
+                                    [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000"
+                                    placeholder="xxxx">
+                                </p-inputNumber>
+                            </div>
+
+                        </div>
+                        <div *ngIf="zipCodeI.invalid && (zipCodeI.dirty || zipCodeI.touched)">
+                            <span class="font-semibold text-xs leading-5 text-rose-500"
+                                *ngIf="zipCodeI.errors['required'] && zipCodeI.value !=1">
+                                ZIP Code is Required !</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="items-start ">
+                    <p-dialog [(visible)]="displayVerificationI" [modal]="true" [style]="{ width: '450px'}"
+                        [baseZIndex]="10000" [draggable]="false" [resizable]="false" class="rounded-3xl">
+                        <form [formGroup]="Form2Individual">
+                            <input type="text" class="form-control outline-none mt-4 h-8" formControlName="email">
+                            <input type="text" class="form-control outline-none mt-4 h-8" formControlName="password">
+                            <input type="text" class="form-control outline-none mt-4 h-8" formControlName="telephone">
+                        </form>
+                    </p-dialog>
+
+                </div>
+            </div>
+        </form>
+    </ng-container>
+    <div>
+        <p-dialog header="Your request wast sent Successfully ! " [(visible)]="ConfirmModal" [modal]="true"
+            [style]="{width: '35vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+            <div class="p-6 text-center">
+                <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"> An administrator will verify your registration within 48H.</h3>
+                <button type="button" (click)="ConfirmModal=false" [routerLink]="['/homepage']"
+                    class="primary-button hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                    id="bouton">
+                    Next Step
+                </button>
+            </div>
+        </p-dialog>
+    </div>
+
+
+    <div class="flex justify-center w-full mb-5 fixed bottom-8">
+        <div class="mt-6 flex items-center justify-between gap-4 w-full max-w-7xl">
+            <div class="flex justify-center ">
+                <button class="previous-button  border-2  border-rose-500" (click)="step = step-1"
+                    *ngIf="step > 1">PREVIOUS</button>
+            </div>
+            <div *ngIf="step <= 1"></div>
+            <div class="flex gap-4" *ngIf="step == (isselected == 'organisation' ? 4 : 3) ">
+                <div class="flex justify-center  ">
+                    <button class="verif-button border-2 border-x-blue-900" [disabled]="!NextStepValidationAction()"
+                        [class]="!NextStepValidationAction() ? 'verif-button-disabled':''"
+                        (click)="showValidationModal()">VALIDATE</button>
+                </div>
+
+                <div class="flex justify-center ">
+                    <button class="primary-button border-2  border-rose-500" [disabled]="!NextStepValidation()"
+                        [class]="!NextStepValidation() ? 'primary-button-disabled':''"
+                        (click)="register()">CONFIRM</button>
+                </div>
+
+            </div>
+
+
+            <div class="flex" *ngIf="step < (isselected == 'organisation' ? 4 : 3) ">
+                <button class="primary-button   border-2 border-red-500" [disabled]="!NextStepValidation()"
+                    [class]="!NextStepValidation() ? 'primary-button-disabled':''" (click)="step = step+1">NEXT</button>
+            </div>
+        </div>
+    </div>
+</div>

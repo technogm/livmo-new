@@ -1,0 +1,251 @@
+<div class="mt-32 flex  justify-center space-x-8">
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-6 h-6" src="assets/img/WhereSearch.png">
+
+        <span class="  ml-4 font-semibold text-l text-black-500 ">Where ?</span>
+    </div>
+
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-6 h-6" src="assets/img/WhenSearch.png">
+
+
+        <span class=" ml-4 font-semibold text-l text-black-500 ">Whene ? </span>
+    </div>
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-6 h-6 " src="assets/img/PeopleSearch.png">
+
+
+        <span class="  ml-4 font-semibold text-l text-black-500 ">People ?</span>
+    </div>
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+
+        <span class=" ml-4 font-semibold text-l text-black-500 ">City</span>
+    </div>
+
+    <p-dialog [(visible)]="display" [modal]="true" [style]="{ width: '70vw' }" [baseZIndex]="10000" [draggable]="false"
+        [resizable]="false">
+
+        <div class="  flex justify-center space-x-8">
+
+            <div *ngIf="dataFilter.indexOf('where')!== -1"
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative ">
+
+                <img class="w-6 h-6" src="assets/img/WhereSearch.png">
+
+                <span class="  ml-4 font-semibold text-l text-black-500 ">Where ?</span>
+                <button class="absolute p-2 right-0 top-0" (click)="deleteImg('Where')">
+                    <!---->
+                    <i class="pi pi-times"></i>
+                </button>
+
+            </div>
+
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative ">
+                <img class="w-6 h-6" src="assets/img/WhenSearch.png">
+
+
+                <span class=" ml-4 font-semibold text-l text-black-500 ">Whene ? </span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Whene")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-6 h-6 " src="assets/img/PeopleSearch.png">
+
+
+                <span class="  ml-4 font-semibold text-l text-black-500 ">People ?</span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("People")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+
+
+                <span class=" ml-4 font-semibold text-l text-black-500 ">City</span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("City")-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+
+        </div>
+        <div class="mt-4 flex  justify-center space-x-12">
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+                <span class="  ml-4 font-semibold text-l text-black-500 ">Theme</span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Theme")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative ">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+
+                <span class=" ml-4 font-semibold text-l text-black-500 ">Sub-Theme </span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Sub-Theme")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+
+                <span class="  ml-4 font-semibold text-l text-black-500 ">Season</span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Season")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+
+                <span class=" ml-4 font-semibold text-l text-black-500 ">Price min </span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Price min")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+            <div
+                class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 relative">
+                <img class="w-4 h-4" src="assets/img/v.png">
+
+
+                <span class=" ml-4 font-semibold text-l text-black-500 ">Price max </span>
+                <button class="absolute p-2 right-0 top-0">
+                    <!--(click)="deleteImg("Price max")"-->
+                    <i class="pi pi-times"></i>
+                </button>
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </p-dialog>
+    <img (click)="showDialog()" class="w-12 h-12" src="assets/img/search1.png">
+
+    <img class="w-12 h-12" src="assets/img/recherche.png">
+
+
+
+
+
+</div>
+
+<div class="mt-4 flex  justify-center space-x-12">
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+        <span class="  ml-4 font-semibold text-l text-black-500 ">Theme</span>
+    </div>
+
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+
+        <span class=" ml-4 font-semibold text-l text-black-500 ">Sub-Theme </span>
+    </div>
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+
+        <span class="  ml-4 font-semibold text-l text-black-500 ">Season</span>
+    </div>
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+
+        <span class=" ml-4 font-semibold text-l text-black-500 ">Price min </span>
+    </div>
+
+    <div class="justify-start rounded-lg bg-white px-3 h-10 py-3 shadow-md flex items-center gap-0 w-44 border-2 ">
+        <img class="w-4 h-4" src="assets/img/v.png">
+
+
+        <span class=" ml-4 font-semibold text-l text-black-500 ">Price max </span>
+    </div>
+</div>
+
+<ng-container>
+    <div class="bg-white p-3 shadow-sm rounded-sm mt-5">
+
+        <div style='background-color:rgba(0, 0, 0, 0)'>
+            <div class="container max-w-7xl mx-auto px-4" style="cursor: auto;">
+
+                <div class="flex flex-wrap gap-y-5 ">
+                    <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4 "
+                        *ngFor="let item of dataArray ;index as i">
+                        <div class="px-6">
+                            <div class="relative">
+                                <img alt="George Hoyt" src={{item.img}}
+                                    class="rounded-xl shadow-lg w-60  h-52 align-middle border-none undefined"
+                                    style="cursor: auto;">
+                                <img *ngIf="statut == 'like'" class=" absolute top-0 p-2 rounded  right-0 m-2 "
+                                    src="assets/img/heart.png" (click)="deslike(item.idExperience)">
+                                <img *ngIf="statut == 'deslike'" class=" absolute top-0 p-2 rounded  right-0 m-2 "
+                                    src="assets/img/unfavory.png" (click)="like(item.idExperience)">
+
+                            </div>
+                            <div class="pt-2 flex justify-between items-center">
+                                <div>
+                                    <h1 (click)="goToDetails(item.foodServId)"
+                                        class=" cursor-pointer text-rose-500 text-sm font-serif font-bold leading-normal mt-0 ">
+                                        {{item.dishName}}</h1>
+                                    <span
+                                        class="text-blue-gray-700 text-sm font-bold leading-normal mt-0 ">{{item.restaurantName}}</span>
+
+                                </div>
+                                <div>
+                                    <p class="text-blue-gray-700 text-sm font-semibold leading-relaxed mt-0 ">
+                                        {{item.adress}},
+                                        Tunisia</p>
+                                    <p class="text-blue-gray-700 text-sm font-normal leading-relaxed mt-0 ">
+                                        {{item.foodPrice}} .Dt
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</ng-container>
